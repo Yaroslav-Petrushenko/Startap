@@ -1,0 +1,47 @@
+@import components/mixin
+html
+    font-size: 1px
+body
+    margin: 0 auto
+.wrapper 
+    margin: 0 auto
+    width: 90%
+    +media(1270)
+        max-width: 1140rem
+.flex
+    display: flex
+    
+ul 
+    align-items: center
+    list-style: none
+    padding-left: 0
+a
+    display: inline-block
+    list-style: none
+    text-decoration: none
+.overflowX-hidden
+    overflow-x: hidden
+._active-anim
+    opacity: 1 
+    transform: translate(0px, 0px)
+    transition: all 0.8s ease 0s 
+
+.anim-show 
+    transform: translate(0px, 120%) 
+    opacity: 0
+    transition: all 0.8s ease 0s 
+
+._anim-show._active-anim,
+._active-anim ._anim-show
+    opacity: 1 !important
+    transform: translate(0px, 0px) !important
+.white 
+    +btn("white") 
+    
+.violet 
+    +btn("violet")
+.vio 
+    +btn("vio")
+@import components/header
+@import components/main
+@import components/footer

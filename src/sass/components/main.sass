@@ -1,0 +1,520 @@
+.main-service 
+    text-align: center
+    h2
+        margin: 0
+        padding-bottom: 15rem
+        position: relative
+        padding-top: 100rem
+        font-size: 20rem
+        text-transform: uppercase
+        color: #555555
+        font-weight: 400
+        font-family: "Montserrat"
+        &::before
+            content: ""
+            position: absolute
+            width: 50rem
+            height: 2rem
+            background-color: #555
+            bottom: -14%
+            left: 50%
+            transform: translate(-50%,-50%)
+            box-sizing: border-box
+            
+    p
+        margin: 0
+        padding-top: 50rem
+        padding-bottom: 70rem
+        font-size: 16rem
+        color: #555555
+        font-weight: 40
+        font-family: "Roboto Slab"
+.service-list
+    justify-content: center
+.personal
+    text-align: center
+    padding: 5rem
+    max-width: 345rem
+    cursor: pointer
+    h3
+        font-size: 14px
+        text-transform: uppercase
+        color: #555555
+        font-weight: 400
+        font-family: "Montserrat"
+    p
+        padding-bottom: 100rem
+        font-size: 14px
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+    &:hover .svg-figur
+        background-color: #c0301c
+    &:hover svg
+        fill: #ffffff
+.svg-figur
+    margin: 0 auto
+    width: 90rem
+    height: 90rem 
+    border-radius: 50%
+    border: 2px solid #dddddd
+    transition: all .5s ease
+    svg
+        margin: auto
+        fill: #c0301c
+
+.about
+    padding: 100rem 0
+    background-color: #f8f8f8
+    h2
+        margin: 0
+        padding-bottom: 30rem
+        position: relative
+        font-size: 20rem
+        text-transform: uppercase
+        color: #555555
+        font-weight: 400
+        font-family: "Montserrat"
+        text-align: center
+        &::before
+            content: ""
+            position: absolute
+            width: 50rem
+            height: 2rem
+            background-color: #555
+            bottom: -14%
+            left: 50%
+            transform: translate(-50%,-50%)
+            box-sizing: border-box
+    p
+        margin: 0
+        padding-top: 30rem
+        font-size: 16px
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        text-align: center
+.aboutPeopleCard
+    position: relative
+.cards-slider
+    position: absolute
+    width: 35rem
+    height: 38rem
+    top: 35%
+    transform: translateY(-50%)
+    background-color: rgba(#555, 0.2)
+    transition: all .3s ease
+    z-index: 2
+    cursor: pointer
+    &:hover
+        background-color: #c0301c
+    &::before
+        content: ""
+        position: absolute
+        width: 10px
+        height: 10px
+        border-right: 2px solid #ddd
+        border-bottom: 2px solid #ddd
+        border-radius: 1px
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%) rotate(135deg)
+        z-index: 3
+
+.right
+    right: 0
+    &::before
+        transform: translate(-50%, -50%) rotate(-45deg)
+.slider
+    width: 100%
+    justify-content: space-between
+.about-text
+    justify-content: space-between
+    p
+        margin-bottom: 70rem
+        text-align: left
+        max-width: 555rem
+        font-size: 14rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+.fig
+    margin: 0
+
+.latest-works
+    padding: 100rem 0
+    h2
+        margin: 0
+        position: relative
+        padding-bottom: 30rem
+        font-size: 20rem
+        text-transform: uppercase
+        color: #555555
+        font-weight: 400
+        font-family: "Montserrat"
+        text-align: center
+        &::before
+            content: ""
+            position: absolute
+            width: 50rem
+            height: 2rem
+            background-color: #555
+            bottom: -14%
+            left: 50%
+            transform: translate(-50%,-50%)
+            box-sizing: border-box
+.latest-menu
+    padding-top: 30rem
+    justify-content: center
+    a
+        padding: 5rem 20rem
+        font-size: 16rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        text-align: center
+        &:hover
+            color: #c0301c
+
+.Get-in-Touch
+    padding: 100rem 0
+    text-align: center
+    background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/glass2.jpg)
+    
+    
+    p
+        pointer-events: none
+        font-size: 30px
+        color: #ffffff
+        font-weight: 400
+        font-family: "Roboto Slab"
+        text-align: center
+.people-name
+    font-size: 14px
+    text-transform: uppercase
+    color: #555555
+    font-weight: 400
+    font-family: "Montserrat"
+.des-people
+    font-size: 13px
+    color: #555555
+    font-weight: 400
+    font-family: "Roboto Slab"
+
+.latest-img
+    margin-top: 65rem
+    
+    display: grid
+    gap: 30rem
+    grid-template-columns: repeat(3, 1fr)
+    a
+        
+        width: 360rem
+        height: 320rem
+        
+    
+.one
+    background: url(../img/1.jpg)
+    &:hover
+        opacity: 2
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/1.jpg)
+.two
+    background: url(../img/2.jpg)
+    &:hover
+        opacity: 2
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/2.jpg)
+.three
+    background: url(../img/3.jpg)
+    &:hover
+        opacity: 2
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/3.jpg)
+.four
+    background: url(../img/4.jpg)
+    &:hover
+        opacity: 2
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/4.jpg)
+.five
+    background: url(../img/5.jpg)
+    &:hover
+        opacity: 2
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/5.jpg)
+.six
+    background: url(../img/6.jpg)
+    &:hover
+        opacity: 2
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/6.jpg)
+.seven
+    background: url(../img/7.jpg)
+    &:hover
+        opacity: 2
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/7.jpg)
+.eight
+    background: url(../img/8.jpg)
+    &:hover
+        opacity: 2
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/8.jpg)
+.nine
+    background: url(../img/9.jpg)
+    &:hover
+        opacity: 2
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/9.jpg)
+.blog
+    padding-top: 100rem
+    h2
+        padding-bottom: 20rem
+        position: relative
+        margin: 0
+        font-size: 20rem
+        line-height: 24rem
+        text-transform: uppercase
+        color: #555555
+        font-weight: 400
+        font-family: "Montserrat"
+        text-align: center
+        &::before
+            content: ""
+            position: absolute
+            width: 50rem
+            height: 2rem
+            background-color: #555
+            bottom: -14%
+            left: 50%
+            transform: translate(-50%,-50%)
+            box-sizing: border-box
+    h5
+        margin: 0
+        padding: 28rem 0 70rem
+        font-size: 16rem
+        line-height: 24rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        text-align: center
+.blog-img
+    margin-right: 40rem
+    
+.nameblog
+    cursor: pointer
+    p
+        font-size: 16rem
+        line-height: 24rem
+        text-transform: uppercase
+        color: #555555
+        font-weight: 400
+        font-family: "Montserrat"
+        text-align: center
+    i
+        font-size: 13rem
+        line-height: 24rem
+        color: #777777
+        font-weight: 400
+        font-family: "Roboto Slab"
+        text-align: center
+    
+    &:hover span,
+    &:hover p
+        color: #c0301c
+
+.blog-info
+    
+    a
+        font-size: 13rem
+        letter-spacing: 1rem
+        line-height: 24rem
+        text-transform: uppercase
+        color: #777777
+        font-weight: 700
+        font-family: "Roboto Slab"
+        text-align: center
+        &:hover
+            color: #c0301c
+.text-info
+    margin-bottom: 30rem
+    font-size: 14rem
+    line-height: 24rem
+    color: #555555
+    font-weight: 400
+    font-family: "Roboto Slab"
+.dataBlog
+    margin-right: 20rem
+    padding: 12rem
+    border: 2rem solid #555555
+    font-size: 24rem
+    letter-spacing: 2rem
+    line-height: 20rem
+    text-transform: uppercase
+    color: #777777
+    font-weight: 700
+    font-family: "Montserrat"
+    text-align: center
+    p
+        margin: 0
+.blogHr
+    margin: 26rem 0
+    height: 1rem
+    background-color: #dddddd
+
+.clientQuotesBrands
+    background-color: #f8f8f8
+    padding: 100rem 0
+    margin-top: 100rem
+
+.brands
+    justify-content: center
+    align-items: center
+    a
+        margin: 0 30rem
+.guotes
+    margin: 0 auto
+    max-width: 790rem
+    h4
+        
+        font-size: 18rem
+        line-height: 30rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        text-align: center
+    p
+        width: 790rem
+        font-size: 18rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        text-align: center
+.contact
+    padding: 100rem 0
+    h2
+        position: relative
+        padding-bottom: 30rem
+        margin: 0
+        font-size: 20rem
+        text-transform: uppercase
+        color: #555555
+        font-weight: 400
+        font-family: "Montserrat"
+        text-align: center
+        &::before
+            content: ""
+            position: absolute
+            width: 50rem
+            height: 2rem
+            background-color: #555
+            bottom: -14%
+            left: 50%
+            transform: translate(-50%,-50%)
+            box-sizing: border-box
+    h6
+        margin: 0
+        padding: 30rem 0 70rem
+        font-size: 16rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        text-align: center
+    input
+        &:hover
+            border: 1px solid #c0301c
+.mpex
+    justify-content: space-between
+.contactForm 
+    form
+        flex-direction: column
+    .name-mail
+        width: 730rem
+        color: #555555
+        input
+            text-transform: uppercase
+            color: #555555
+            font-weight: 400
+            width: 50%
+    .phone-number
+        width: 730rem
+        input
+            text-transform: uppercase
+            color: #555555
+            font-weight: 400
+            width: 50%
+.contactInfo
+    p
+        margin: 0
+        font-size: 12rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        text-align: left
+    h4
+        margin: 0
+        padding-bottom: 20rem
+        font-size: 14rem
+        text-transform: uppercase
+        color: #555555
+        font-family: "Myriad Pro"
+        text-align: left
+.telHotline
+    a
+        font-size: 12rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+.mp
+    padding: 5rem 0 0
+.contact-descr-mail
+    a
+        font-size: 12rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+.contactForm input, 
+.contactForm textarea 
+    margin: 0rem 15rem 10rem
+    padding: 10rem 15rem
+    text-transform: uppercase
+.contactForm 
+    textarea 
+        font-size: 12rem
+        text-transform: uppercase
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        resize: vertical
+        min-height: 50rem
+        max-height: 250rem
+        width: 91.3%
+.yuor-message
+    textarea 
+        font-size: 12rem
+        text-transform: uppercase
+        color: #555555
+        font-weight: 400
+.send-message
+    align-items: center
+    span
+        padding-right: 3rem
+        font-size: 14rem
+        color: #c0301c
+    p
+        font-size: 12rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+    input
+        font-size: 12px
+        letter-spacing: 1px
+        text-transform: uppercase
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        background-color: #ffffff
+        border: 1px solid #555555
+        &:hover
+            color: #ffffff
+            background-color: #c0301c
+.mail,
+.telHotline
+    margin: 0
+    padding: 40rem 0 0
+.tok
+    padding: 5rem 0 0
+.ny
+    padding-bottom: 5rem

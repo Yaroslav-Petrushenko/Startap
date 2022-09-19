@@ -1,0 +1,139 @@
+- 
+    let mainMenu = [
+        {
+            name: "HomeHome" , 
+            url: "#home"
+        },
+        {
+            name: "Services" , 
+            url: "#service"
+        },
+        {
+            name: "About" , 
+            url: "#about"
+        },
+        {
+            name: "Works" , 
+            url: "#works"
+        },
+        {
+            name: "Blog" , 
+            url: "#blog"
+        },
+        {
+            name: "Clients" , 
+            url: "#client"
+        },
+        {
+            name: "Contact" , 
+            url: "#contact"
+        },
+    ] 
+
+-
+    let aboutPeoples = {
+        KhalilUddin: {
+            src:"img/uddin",
+            alt:"Khalil Uddin",
+            employeeName: "Md. Khalil Uddin",
+            description: "Head of Ideas"
+        },
+        RubelMiah: {
+            src:"img/miah",
+            alt:"Rubel Miah",
+            employeeName: "Rubel Miah",
+            description: "Lead WordPress Developer"
+        },
+        ShamimMia: {
+            src:"img/mia",
+            alt:"Shamim Mia",
+            employeeName: "Shamim Mia",
+            description: "Sr. Web Developer"
+        },
+        JohnDoe: {
+            src:"img/doe",
+            alt:"John Doe",
+            employeeName: "John Doe",
+            description: "Front-end Developer"
+        },
+        JohnDoe: {
+            src:"img/doe",
+            alt:"John Doe",
+            employeeName: "John Doe",
+            description: "Front-end Developer"
+        }
+    }
+-
+    let blogPosts = {
+        blogOne: {
+            src:"img/blogimg1.jpg",
+            alt:"Startup ideas needs to be funded ",
+            data: "18",
+            month: "Oct",
+            name: "Startup ideas needs to be funded",
+            description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam"
+        },
+        blogTwo: {
+            src:"img/blogimg2.jpg",
+            alt:"User Interface Designing Elements",
+            data: "18",
+            month: "Oct",
+            name: "User Interface Designing Elements ",
+            description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam"
+        }
+    }
+-
+    let brands = [
+        {url: "#", src: "img/deorham.png", alt: "deorham"},
+        {url: "#", src: "img/ratings.png", alt: "ratings"},
+        {url: "#", src: "img/malik.png", alt: "makikMedia"},
+        {url: "#", src: "img/bcause.png", alt: "bcause"},
+        {url: "#", src: "img/wompify.png", alt: "wompify"}
+    ]
+
+
+
+mixin menu (items) 
+    for item in items 
+        li
+            a(href=item.url) #{item.name} 
+
+
+mixin aboutPeople (item)
+    .fig#fig
+        figure.fig
+            figcaption.about-people
+                .people-img
+                    picture 
+                        source(srcset=item.src + ".webp", tipe="image/webp")
+                        img(src=item.src + ".png", alt=item.alt)
+                    .employee-social.flex
+                        a.fb(href="#") 
+                        a.tw(href="#") 
+                        a.gg(href="#")
+                        a.in(href="#")
+                .description-card
+                    p.people-name #{item.employeeName}
+                    p.des-people #{item.description}
+
+mixin blogPost (item)
+    .blog-img
+        img(src=item.src, alt=item.alt)
+    .blog-info
+        .blogInfo.flex
+            .dataBlog
+                p #{item.data}
+                span #{item.month}
+            .nameblog
+                p #{item.name}
+                i By 
+                    span Khalil 
+                    | Uddin in 
+                    span Development!
+        p.text-info #{item.description}
+        a(href="#") Read more
+
+mixin brand (items)
+    for item in items 
+        a(href=item.url) 
+            img(src=item.src, alt=item.alt)

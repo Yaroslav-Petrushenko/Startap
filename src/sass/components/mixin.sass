@@ -1,0 +1,44 @@
+=btn ($color) 
+    display: inline-block
+    padding: 10px 30px
+    text-decoration: none
+    font-size: 13px
+    letter-spacing: 1px
+    color: #ffffff
+    font-weight: 700
+    font-family: "Maven Pro"
+    text-align: center
+    transition: background-color .3s ease
+    @if $color == "white" 
+        font-size: 16px
+        text-transform: uppercase
+        color: #ffffff
+        font-weight: 400
+        font-family: "Montserrat"
+        text-align: center
+        background-color: rgba(110,69,226,0)
+        border: 2px solid #ffffff
+        &:hover 
+            background-color: #c0301c
+            
+    @else if $color == "violet" 
+        background-color: rgba(110,69,226,0)
+        &:hover 
+            background-color: #6e45e2
+            color: #ffffff
+    @else if $color == "vio" 
+        color: #c2c9db
+        border-radius: 25px
+        filter: drop-shadow(0 0 10.5px rgba(204,204,223,0.5))
+        background-color: #ffffff
+        border: 1px solid #d7dbe8
+        text-align: center
+        &:hover 
+            background-color: #6e45e2
+            filter: none
+            
+    
+    
+=media ($size)
+    @media screen and ( min-width: #{$size}px)
+        @content

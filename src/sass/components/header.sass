@@ -1,0 +1,121 @@
+.header 
+    background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url(../img/heade.jpg)
+    height: 770rem
+    background-repeat: no-repeat
+    position: relative
+    //transition: background-position .2s linear
+.top
+    justify-content: space-between
+    align-items: center
+    padding-top: 40rem
+.logo
+    a
+        padding-left: 30rem
+        margin: 0
+        font-size: 24rem
+        color: #ffffff
+        font-weight: 700
+        font-family: "Montserrat"
+        
+        &:hover
+            color:#c0301c
+
+.PricingTable
+    position: absolute
+    top: 32%
+    left: 50%
+    pointer-events: none
+    text-align: center
+    opacity: 0
+    transform: translate(-50%, 0%) 
+    transition: all 1.5s ease
+    h1
+        margin: 0
+        padding-top: 260rem
+        font-size: 48rem
+        text-transform: uppercase
+        color: #ffffff
+        font-weight: 400
+        font-family: "Montserrat"
+        
+    p
+        padding-top: 20rem
+        padding-bottom: 70rem
+        margin: 0
+        font-size: 25rem
+        color: #ffffff
+        font-weight: 400
+        font-family: "Montserrat"
+    a
+        
+        pointer-events: all
+.PricingTable._active-anim
+    transform: translate(-50%, -50%)
+    opacity: 1
+    
+
+.top-menu 
+    padding-right: 30rem
+    li
+        a 
+            font-size: 14rem
+            letter-spacing: 0rem
+            color: #ffffff
+            font-weight: 400
+            font-family: "Montserrat"
+            padding: 15px 20px
+            position: relative
+            &::before
+                content: ""
+                position: absolute
+                bottom: 0
+                left: 0
+                width: 100%
+                height: 2px
+                background-color: transparent
+            &:hover::before
+                background-color: #fff
+.navmenu
+    display: none
+    +media(1030)
+        display: flex
+        position: relative   
+        flex-direction: row
+        top: 0      
+        background: transparent
+
+.hamburger
+    height: 50px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    +media(1030)
+        display: none
+    span
+        margin: 4px 0
+        width: 35px
+        height: 3px
+        background-color: #fff
+        border-radius: 5px
+
+
+.active-burger 
+    display: inline-block
+    position: absolute
+    flex-direction: column
+    text-align: center
+    top: 100px
+    left: 0
+    right: 0
+    background-size: cover
+    
+    z-index: 2
+    +media(700)
+        top: 115px
+    ul
+        flex-direction: column
+        align-items: center
+    li
+        a
+            display: inline-block
+            padding: 20px 30px
