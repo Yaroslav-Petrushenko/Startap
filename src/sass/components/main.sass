@@ -88,19 +88,23 @@
             box-sizing: border-box
     p
         margin: 0
-        padding-top: 30rem
+        
         font-size: 16px
         color: #555555
         font-weight: 400
         font-family: "Roboto Slab"
         text-align: center
+
 .aboutPeopleCard
     position: relative
+.pt
+    padding-top: 30rem
+    padding-bottom: 70rem
 .cards-slider
     position: absolute
     width: 35rem
     height: 38rem
-    top: 35%
+    top: 40%
     transform: translateY(-50%)
     background-color: rgba(#555, 0.2)
     transition: all .3s ease
@@ -125,7 +129,7 @@
     right: 0
     &::before
         transform: translate(-50%, -50%) rotate(-45deg)
-.slider
+.slider-card
     width: 100%
     justify-content: space-between
 .about-text
@@ -196,6 +200,7 @@
     font-weight: 400
     font-family: "Montserrat"
 .des-people
+    padding-top: 15rem
     font-size: 13px
     color: #555555
     font-weight: 400

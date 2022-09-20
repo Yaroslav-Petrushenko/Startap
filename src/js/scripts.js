@@ -82,13 +82,14 @@ hamburger.onclick = function () {
 }
 
 
-//local
+//localStorage
 // window.addEventListener("load", function(event) {
 //     alert("All resources finished loading!")
 // })
 let firstVisit,
     lastVisit,
-    timeInSite
+    timeInSite,
+    firstTimeInSite
 window.onload = function (){
     if (!localStorage.firstVisit || localStorage.firstVisit == 'undefined'){
         localStorage.firstVisit = new Date ()
@@ -97,62 +98,41 @@ window.onload = function (){
     if (!localStorage.lastVisit){
         localStorage.lastVisit = firstVisit
     }
+    timeInSite = (new Date() - new Date (localStorage.lastVisit)) / 1000 / 60
+    firstTimeInSite = (new Date () - new Date (localStorage.firstVisit)) / 1000 / 60
+    console.log(firstTimeInSite)
+    if (firstTimeInSite < 5) {
+        console.log ("Welcome to STARTUP")
+    } else if (timeInSite > 1440) {
+        console.log ("Тебе не було цілий день")
+    } else if (timeInSite > 2880) {
+        console.log ("де тебе носило так довго")
+
     window.onblur = function (){
         localStorage.lastVisit = new Date ()  
+        
     }
     lastVisit = localStorage.lastVisit
-    timeInSite = ((new Date() - new Date (lastVisit)) / 1000 / 60)
+    
     //console.log(timeInSite)
 
-} 
-
-
-//
-
+    } 
+}
 // window.addEventListener('click', function (evt) {
 //     if (evt.detail === 3) {
 //         alert('triple click!')
 //     }
 // });
-
 let svgfigur = document.querySelector(".sv svg"),
-    trople = document.querySelectorAll(".personal h3"),
-    timer 
-// svgfigur.addEventListener('click', function (e){
-//     if (e.detail === 3) {
-//     trople.innerHTML = 'Новuй текст!'
-//     //alert("kdj")
-//     }
-// })
-         
-
-svgfigur.addEventListener("dblclick", function () {
-    timer = setTimeout(function () {
-        timer = null
-    }, 2000)
-})
-svgfigur.addEventListener("click", function () {
-    if (timer) {
-        clearTimeout(timer)
-        timer = null
-        changeTex()
+    trople = document.querySelectorAll(".personal h3")
+    //timer 
+svgfigur.addEventListener('click', function (e){
+    if (e.detail === 3) {
+        trople.forEach(element => {  
+            element.innerHTML = 'New text triple click'
+        })
     }
-
 })
-function changeTex (){
-    trople.forEach(element => {
-        element.innerText = "Cliiiiick"
-    })
-
-}
-
-// svgfigur.addEventListener('click', function() {
-//     trople.innerHTML = 'Новый текст!'
-// })
-
-
-//homePage.style.height = window.innerHeight + "px";
-
 // animation
 
 
@@ -190,3 +170,26 @@ if (animItems.length > 0) {
         animOnScroll()
     }, 200)
 }
+
+
+//slider
+function infinitySlider () {
+    let slider = document.querySelector(".slider-card"),
+        cards = document.querySelectorAll(".ap"),
+        btnLeft = document.querySelector(".left"),
+        btnRight = document.querySelector(".right"),
+        heightCards = cards[0].getBoundingClientRect().height,
+        widthCards = cards[0].getBoundingClientRect().width,
+        sliderWidth = slider.getBoundingClientRect().width,
+        cardsCount = Math.floor(sliderWidth / widthCards),
+        distanceCards = (widthCards * cardsCount) / (cardsCount - 1) 
+
+
+}
+window.onresize = infinitySlider ()
+
+
+// var div = document.getElementById('div_id'),
+//     clone = div.cloneNode(true)
+//         clone.id = "some_id"
+//     document.body.appendChild(clone)
