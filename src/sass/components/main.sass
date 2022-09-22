@@ -30,11 +30,13 @@
         font-weight: 40
         font-family: "Roboto Slab"
 .service-list
-    justify-content: center
+    flex-direction: column
+    +media(728)
+        justify-content: center
+        flex-direction: row
 .personal
     text-align: center
     padding: 5rem
-    max-width: 345rem
     cursor: pointer
     h3
         font-size: 14px
@@ -43,15 +45,20 @@
         font-weight: 400
         font-family: "Montserrat"
     p
-        padding-bottom: 100rem
+        padding-bottom: 40rem
         font-size: 14px
         color: #555555
         font-weight: 400
         font-family: "Roboto Slab"
+        +media(728)
+            padding-bottom: 100rem
     &:hover .svg-figur
         background-color: #c0301c
     &:hover svg
         fill: #ffffff
+    +media(728)
+        max-width: 345rem
+
 .svg-figur
     margin: 0 auto
     width: 90rem
@@ -87,19 +94,41 @@
             transform: translate(-50%,-50%)
             box-sizing: border-box
     p
-        margin: 0
-        
+
         font-size: 16px
         color: #555555
         font-weight: 400
         font-family: "Roboto Slab"
         text-align: center
+.about-text
+    // justify-content: space-between
+    flex-direction: column
+    p
+        padding-bottom: 30rem
+        text-align: left
+        font-size: 14rem
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        +media(768)
+            max-width: 335rem
+        +media(968)
+            max-width: 555rem
+            padding-bottom: 70rem
+            
+    +media(768)
+        justify-content: space-between
+        flex-direction: row
+    
 
 .aboutPeopleCard
     position: relative
+    // overflow: hidden
 .pt
     padding-top: 30rem
     padding-bottom: 70rem
+    width: 90%
+    margin: 0 auto
 .cards-slider
     position: absolute
     width: 35rem
@@ -131,19 +160,15 @@
         transform: translate(-50%, -50%) rotate(-45deg)
 .slider-card
     width: 100%
-    justify-content: space-between
-.about-text
-    justify-content: space-between
-    p
-        margin-bottom: 70rem
-        text-align: left
-        max-width: 555rem
-        font-size: 14rem
-        color: #555555
-        font-weight: 400
-        font-family: "Roboto Slab"
-.fig
-    margin: 0
+    position: relative
+    overflow: hidden
+.ap
+    transition: all .6s ease
+    position: absolute
+
+.ap
+    figure
+        margin: 0
 
 .latest-works
     padding: 100rem 0
@@ -170,7 +195,14 @@
 .latest-menu
     padding-top: 30rem
     justify-content: center
+    flex-direction: column
+    +media(930)
+        flex-wrap: nowrap
+    +media(425)
+        flex-direction: row
+        flex-wrap: wrap
     a
+        
         padding: 5rem 20rem
         font-size: 16rem
         color: #555555
@@ -188,11 +220,19 @@
     
     p
         pointer-events: none
+        width: 90%
+        margin: 0 auto
+        padding-bottom: 20rem
+        padding-bottom: 20rem
         font-size: 30px
         color: #ffffff
         font-weight: 400
         font-family: "Roboto Slab"
         text-align: center
+        +media(425)
+            width: 100%
+            margin: 0
+            
 .people-name
     font-size: 14px
     text-transform: uppercase
@@ -208,14 +248,26 @@
 
 .latest-img
     margin-top: 65rem
-    
+    flex-direction: column
     display: grid
     gap: 30rem
-    grid-template-columns: repeat(3, 1fr)
+    grid-template-columns: repeat(1, 1fr)
+    +media(960)
+        grid-template-columns: repeat(2, 1fr) 
+    +media(1240)
+        grid-template-columns: repeat(3, 1fr) 
     a
+        justify-self: center
+        width: 290rem
+        height: 290rem
+        +media(380)
+            width: 360rem
+            height: 320rem
         
-        width: 360rem
-        height: 320rem
+        +media(1240)
+            justify-self: start
+
+            
         
     
 .one
@@ -295,9 +347,26 @@
         font-weight: 400
         font-family: "Roboto Slab"
         text-align: center
+.blogPost
+    flex-direction: column
+    +media(1032)
+        flex-direction: row
+
+
 .blog-img
-    margin-right: 40rem
+    margin: 0 auto
+    padding-bottom: 20rem
     
+    +media(1032)
+        flex-direction: row
+        margin-right: 35rem
+    img
+        max-width: 290rem
+        +media(426)
+            max-width: 460rem
+
+        
+
 .nameblog
     cursor: pointer
     p
@@ -307,7 +376,9 @@
         color: #555555
         font-weight: 400
         font-family: "Montserrat"
-        text-align: center
+        text-align: left
+        +media(475)
+            text-align: center
     i
         font-size: 13rem
         line-height: 24rem
@@ -365,15 +436,23 @@
     margin-top: 100rem
 
 .brands
+    flex-direction: column
     justify-content: center
     align-items: center
+    +media(930)
+        flex-wrap: nowrap
+    +media(425)
+        flex-direction: row
+        flex-wrap: wrap
     a
         margin: 0 30rem
+        padding-top: 20rem
 .guotes
     margin: 0 auto
     max-width: 790rem
     h4
-        
+        margin: 20rem auto
+        width: 90%
         font-size: 18rem
         line-height: 30rem
         color: #555555
@@ -422,32 +501,58 @@
             border: 1px solid #c0301c
 .mpex
     justify-content: space-between
+    flex-direction: column
+    +media(768)
+        justify-content: space-between
+        flex-direction: row
+        padding-top: 50rem
+
+.contactForm 
+    textarea 
+        margin: 15rem 10rem
+        padding: 10rem 15rem
+        text-transform: uppercase
 .contactForm 
     form
         flex-direction: column
     .name-mail
-        width: 730rem
         color: #555555
+        flex-direction: column
+        +media(1024)
+            width: 730rem
+            flex-direction: row
         input
             text-transform: uppercase
             color: #555555
             font-weight: 400
-            width: 50%
+            
+            +media(769)
+                width: 730rem
+            
     .phone-number
-        width: 730rem
+        flex-direction: column
+        +media(1024)
+            flex-direction: row
+            width: 730rem
+            
         input
             text-transform: uppercase
             color: #555555
             font-weight: 400
-            width: 50%
+            +media(769)
+                width: 50%
+
 .contactInfo
+    text-align: center
+    flex-direction: column
+    +media(768)
+        text-align: left
     p
         margin: 0
         font-size: 12rem
         color: #555555
         font-weight: 400
         font-family: "Roboto Slab"
-        text-align: left
     h4
         margin: 0
         padding-bottom: 20rem
@@ -455,7 +560,6 @@
         text-transform: uppercase
         color: #555555
         font-family: "Myriad Pro"
-        text-align: left
 .telHotline
     a
         font-size: 12rem
@@ -470,13 +574,19 @@
         color: #555555
         font-weight: 400
         font-family: "Roboto Slab"
-.contactForm input, 
-.contactForm textarea 
-    margin: 0rem 15rem 10rem
-    padding: 10rem 15rem
-    text-transform: uppercase
+.contactForm 
+    input
+        margin: 15rem 10rem
+        padding: 10rem 15rem
+        text-transform: uppercase
+        flex-direction: column
+        &:focus
+            outline: none
+        &:focus-visible
+            border: 1px solid #c0301c
 .contactForm 
     textarea 
+        flex-direction: column
         font-size: 12rem
         text-transform: uppercase
         color: #555555
@@ -485,7 +595,18 @@
         resize: vertical
         min-height: 50rem
         max-height: 250rem
-        width: 91.3%
+        width: 82.3%
+            outline: none
+        &:focus-visible
+            border: 1px solid #c0301c
+        +media(375)
+            width: 85%
+        +media(425)
+            width: 87%
+        +media(768)
+            width: 89.3%
+        +media(1024)
+            width: 93%
 .yuor-message
     textarea 
         font-size: 12rem
@@ -494,15 +615,26 @@
         font-weight: 400
 .send-message
     align-items: center
-    span
-        padding-right: 3rem
-        font-size: 14rem
-        color: #c0301c
+    flex-direction: column
+    +media(768)
+        flex-direction: row
+    
+        
     p
+        padding-left: 20rem
+        position: relative
         font-size: 12rem
         color: #555555
         font-weight: 400
         font-family: "Roboto Slab"
+        &::before
+            position: absolute
+            content: "*"
+            width: 10rem
+            height: 10rem
+            color: #c0301c
+            top: 0
+            left: 10rem
     input
         font-size: 12px
         letter-spacing: 1px

@@ -100,21 +100,20 @@ mixin menu (items)
 
 
 mixin aboutPeople (item)
-    .fig#fig
-        figure.fig
-            figcaption.about-people
-                .people-img
-                    picture 
-                        source(srcset=item.src + ".webp", tipe="image/webp")
-                        img(src=item.src + ".png", alt=item.alt)
-                    .employee-social.flex
-                        a.fb(href="#") 
-                        a.tw(href="#") 
-                        a.gg(href="#")
-                        a.in(href="#")
-                .description-card
-                    p.people-name #{item.employeeName}
-                    p.des-people #{item.description}
+    figure.fig
+        figcaption.about-people
+            .people-img
+                picture 
+                    source(srcset=item.src + ".webp", tipe="image/webp")
+                    img(src=item.src + ".png", alt=item.alt)
+                .employee-social.flex
+                    a.fb(href="#") 
+                    a.tw(href="#") 
+                    a.gg(href="#")
+                    a.in(href="#")
+            .description-card
+                p.people-name #{item.employeeName}
+                p.des-people #{item.description}
 
 mixin blogPost (item)
     .blog-img
