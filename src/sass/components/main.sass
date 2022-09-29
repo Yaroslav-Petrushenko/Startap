@@ -136,7 +136,7 @@
     top: 40%
     transform: translateY(-50%)
     background-color: rgba(#555, 0.2)
-    transition: all .3s ease
+    //transition: all .3s ease
     z-index: 2
     cursor: pointer
     &:hover
@@ -165,10 +165,72 @@
 .ap
     transition: all .6s ease
     position: absolute
+    // min-width: 263rem
+    //max-width: 546rem
+    img
+        width: 100%
+        min-height: 256rem
+    
+    // +media(585)
+    //     width: auto
+        // img
+        //     width: auto
 
 .ap
     figure
         margin: 0
+.people-img
+    position: relative
+.employee-social
+    display: block
+    position: absolute
+    bottom: 10%
+    left: 30%
+    a
+        width: 30rem
+        height: 30rem
+        margin: 2rem 
+        background: url(../img/sprite1.png) no-repeat
+        transition: all 0.3s ease
+
+    .fb 
+        background-position: -15rem -14rem
+        &:hover
+            background-position: -5rem -54rem  
+    .tw
+        background-position: -55rem -15rem 
+        &:hover
+            background-position: -49rem -54rem 
+    .gg
+        background-position: -97rem -12rem 
+        &:hover
+            background-position: -91rem -55rem 
+    .in
+        background-position: -137rem -11rem 
+        &:hover
+            background-position: -130rem -56rem 
+
+// a
+//     .tw
+  
+
+
+// a
+//     .gg
+
+
+    
+
+// a.fb:hover{
+//   background-position: -1px -22px;
+// }
+
+// a.tw:hover{
+//   background-position: -34px -23px;
+// }
+
+// a.in:hover{
+//   background-position: -13px -22px ;
 
 .latest-works
     padding: 100rem 0
@@ -216,7 +278,9 @@
     padding: 100rem 0
     text-align: center
     background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/glass2.jpg)
-    
+    background-size: auto 100%
+    +media(768)
+        background-size: 120% auto
     
     p
         pointer-events: none
@@ -496,9 +560,7 @@
         font-weight: 400
         font-family: "Roboto Slab"
         text-align: center
-    input
-        &:hover
-            border: 1px solid #c0301c
+    
 .mpex
     justify-content: space-between
     flex-direction: column
@@ -596,6 +658,7 @@
         min-height: 50rem
         max-height: 250rem
         width: 82.3%
+        &:focus
             outline: none
         &:focus-visible
             border: 1px solid #c0301c

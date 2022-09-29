@@ -1,3 +1,12 @@
+function $(selector) {
+    let elem = document.querySelectorAll(selector)
+    if(elem.length == 1){
+        return elem[0]
+    }
+    return elem
+}
+
+
 //parallax
 let parallaxStartPos
 const parallaxBG = document.querySelectorAll(".parallax")
@@ -14,7 +23,7 @@ function moveBackground(e) {
 
 parallaxBG.forEach(element => {
     element.style.backgroundPosition = 'center'
-    element.style.backgroundSize = '120% auto'
+    // element.style.backgroundSize = '120% auto'
     // element.style.backgroundSizeX = '250%'
     element.addEventListener("mousemove", function (e) {
         moveBackground(e);
@@ -62,7 +71,7 @@ function scrollToBlock(href) {
         if (Math.abs(window.pageYOffset - targetLocation) <= 3) {
             window.scrollTo(0, targetLocation)
             clearInterval(interval)
-            console.log(pixelScroll)
+            //console.log(pixelScroll)
         } else if (Math.abs(window.pageYOffset + window.innerHeight - document.body.getBoundingClientRect().height) < 5) {
             clearInterval(interval)
         }
@@ -170,7 +179,7 @@ if (animItems.length > 0) {
             left: rect.left + scrollLeft
         }
     }
-
+    
     setTimeout(() => {
         animOnScroll()
     }, 200)
@@ -179,148 +188,177 @@ if (animItems.length > 0) {
 
 //slider
 
-let positionCards = 0,
-    cards = document.querySelectorAll(".ap"),
-    slider = document.querySelector(".slider-card"),
-    sliderWidth = slider.getBoundingClientRect().width,
-    widthCards = cards[0].getBoundingClientRect().width,
-    btnLeft = document.querySelector(".left"),
-    btnRight = document.querySelector(".right"),
-    cardsCount = Math.floor(sliderWidth / widthCards),
-    distanceCards = (sliderWidth - (widthCards * cardsCount)) / (cardsCount - 1)
-    
-if (cards.length > cardsCount){
-    positionCards -= (distanceCards + widthCards)
-    let firstEl = cards[cards.length - 1].cloneNode(true)
-    slider.insertAdjacentElement("afterbegin", firstEl)
-}
-function infinitySlider() {
-    let heightCards = cards[0].getBoundingClientRect().height
-    cards = document.querySelectorAll(".ap")
-    widthCards = cards[0].getBoundingClientRect().width
-    sliderWidth = slider.getBoundingClientRect().width
-    cardsCount = Math.floor(sliderWidth / widthCards)
-    distanceCards = (sliderWidth - (widthCards * cardsCount)) / (cardsCount - 1)
-    slider.style.height = heightCards + "px"
-    if (cards.length > cardsCount){
-        positionCards -= (distanceCards + widthCards)
-        //let firstClone = 
-    }
-    function shuffleCard() {
-        positionCards = 0
-        if (cards.length > cardsCount){
-            positionCards -= (distanceCards + widthCards)
-            btnLeft.style.display = "block"
-            btnRight.style.display = "block"
 
-        } else {
+
+function infinitySlider (selector, settings) { // selector - шлях до слайдера. settings - нестандартні налаштування
+    let positionCards = 0,
+    slider = document.querySelector(selector),
+    sliderCard = slider.querySelector('.slider-card'),
+    sliderWidth = sliderCard.getBoundingClientRect().width,
+    cards = sliderCard.children,
+    widthCards,
+    heightCards,
+    cloneCard,
+    distanceCards,
+    constCardWidth,
+    cardsCount,
+    btnRight = slider.querySelector(".sliderBtn.right"),
+    btnLeft = slider.querySelector(".sliderBtn.left"),
+    defaultSettings = {
+        slideToShow: 1,
+        slideToScroll: 1,
+        gap: 20,//відстань між слайдами
+        arrows: true,
+        autoPlay: true,
+        autoPlaySpead: 3000,
+        responsive: []
+    }
+    if(localStorage.constCardWidth){
+        constCardWidth = localStorage.constCardWidth
+    } else {      
+        constCardWidth = cards[0].getBoundingClientRect().width
+        localStorage.constCardWidth = constCardWidth
+    }
+    cardsCount = Math.floor(sliderWidth / constCardWidth)
+    slider.querySelectorAll('.clone').forEach(clone => {
+        clone.remove()
+    })
+    //let connectTheObject = Object.assign(settings, defaultSettings)
+    settings = {...defaultSettings, ...settings} // берем всі аргументи обох об'єктів settings в кінці щоб перекрити новими властивостями яких не вистачає
+    distanceCards = settings.gap
+    widthCards = (sliderWidth - ((cardsCount - 1) * distanceCards)) / cardsCount
+    positionCards = 0 - (distanceCards + widthCards)
+    for(let i = 1; i <= settings.slideToScroll; i++){
+        cloneCard = cards[cards.length - i].cloneNode(true)
+        cloneCard.classList.add("clone")
+        sliderCard.insertAdjacentElement("afterbegin", cloneCard)
+    }
+    cards = sliderCard.children
+    for(let i = 0; i < cards.length; i++){
+        cards[i].style.width = widthCards + 'px'
+    }
+    
+    heightCards = cards[0].getBoundingClientRect().height
+    sliderCard.style.height = heightCards + 'px'
+    console.log(heightCards)
+    
+    function shuffleCard () {
+        positionCards = 0 - (distanceCards + widthCards)
+        if (!settings.arrows || (cards.length - 1) <= cardsCount){
             btnLeft.style.display = "none"
             btnRight.style.display = "none"
+        } else {
+            btnLeft.style.display = "block"
+            btnRight.style.display = "block"
         }
-        cards = document.querySelectorAll(".ap")
-        cards.forEach(card => {
-            card.style.left = positionCards + 'px'
-            positionCards += distanceCards + widthCards
-            
-        })
+        
+        for(let i = 0; i < cards.length; i++){
+            cards[i].style.left = positionCards + 'px'
+            positionCards += (distanceCards + widthCards)
+
+        }
     }
     shuffleCard()
-    function changeSlide(direction){
-        if (direction == "left"){
-            cards[cards.length -1].remove()
-            let prelastEl = cards[cards.length - 2].cloneNode(true) // bo pislya remove lenght ne obnovilca
-            slider.insertAdjacentElement("afterbegin", prelastEl)
-            
-        } else if (direction == "right"){
+
+    function changeSlide (direction) {
+        if (direction == "left") {
+            cards[cards.length - 1].remove()
+            let preLastEl = cards[cards.length - 1].cloneNode(true)
+            sliderCard.insertAdjacentElement("afterbegin", preLastEl)
+        } else if (direction == "right") {
             cards[0].remove()
-            let preFirstEl = cards[1].cloneNode(true)
-            slider.insertAdjacentElement("beforeend", preFirstEl)
+            let preFirstEl = cards[0].cloneNode(true)
+            sliderCard.insertAdjacentElement("beforeend", preFirstEl)
         }
         shuffleCard()
     }
-    
-    btnLeft.onclick = function (){
-        changeSlide ("left")
+    btnLeft.onclick = function () {
+        changeSlide("left")
     }
-    btnRight.onclick = function (){
-        changeSlide ("right")
+    btnRight.onclick = function () {
+        changeSlide("right")
     }
 }
-window.onresize = infinitySlider
-infinitySlider()
+
+window.onresize = function(){
+    infinitySlider(".slider", {
+       responsive: [
+           {
+               breackPoint: 625,
+               slideToShow: 2,
+               slideToScroll: 1,
+               arrows: true
+           },
+           {
+               breackPoint: 768,
+               slideToShow: 3,
+               slideToScroll: 1,
+               arrows: true
+           },
+           {
+               breackPoint: 1024,
+               slideToShow: 3,
+               slideToScroll: 3,
+               arrows: true
+           },
+           {
+               breackPoint: 1440,
+               slideToShow: 4,
+               slideToScroll: 4,
+               arrows: true
+           } 
+       ]
+   })
+}
+// дефолсетінгс і сетінгс перегнать в один об'єкт 
+// обнуляти і додавати 
+// Slider super true
+infinitySlider(".slider", {
+    responsive: [
+        {
+            breackPoint: 625,
+            slideToShow: 2,
+            slideToScroll: 1,
+            arrows: true
+        },
+        {
+            breackPoint: 768,
+            slideToShow: 3,
+            slideToScroll: 1,
+            arrows: true
+        },
+        {
+            breackPoint: 1024,
+            slideToShow: 3,
+            slideToScroll: 3,
+            arrows: true
+        },
+        {
+            breackPoint: 1440,
+            slideToShow: 4,
+            slideToScroll: 4,
+            arrows: true
+        }
+    ]
+})
 
 
 
-// var div = document.getElementById('div_id'),
-//     clone = div.cloneNode(true)
-//         clone.id = "some_id"
-//     document.body.appendChild(clone)
-// let viewport = document.querySelector(".slider-card").offsetWidth;
-// let btnLeft = document.querySelector(".cards-slider.left")
-// let btnRight = document.querySelector(".cards-slider.right")
-
-// let slides = document.querySelectorAll(".ap")
-// let sliders = []
-
-
-// for (let i = 0; i < slides.length; ++i) {
-//     sliders[i] = slides[i]
-//     slides[i]
-// }
-
-// let offs = 0
-// let step = 0
-
-
-// function drowL() {
-//     let slide = document.createElement("div");
-//     slide.classList.add(".ap")
-//     slide.appendChild(sliders[step])
-//     slide.style.left = offs * viewport + "px"
-//     document.querySelector(".slider-card").appendChild(slide)
-//     if (step + 1 == slide.length) {
-//         step = 0
-//     } else { 
-//         step++
+// let family = [{'name':'apple', 'delivery_time': '11:00', 'prise':'100'}, 
+//                {'name':'pear', 'delivery_time': '12:00', 'prise':'100'}, 
+//                {'name':'melon', 'delivery_time': '13:00', 'prise':'100'}, 
+//                {'name':'apple', 'delivery_time': '11:00', 'prise':'100'}];
+               
+//     let result = family.reduce((acc, item) => { 
+//     let oldItem = acc.find(oldItem => oldItem.name === item.name);
+//     if (oldItem) {
+//         oldItem.prise = ""+((+oldItem.prise)+(+item.prise))} 
+//     else {
+//         acc.push(item) 
 //     }
-//     offs = 1
-// }
+//     return acc;
+//     }, 
+//     []);
+    
+//     console.log(result);
 
-// drowL()
-
-// // function drowR() {
-// //     let slid = document.createElement("div");
-// //     slid.classList.add("ap")
-// //     slid.appendChild(sliders[step])
-// //     slid.style.left = offs * viewport + "px"
-// //     document.querySelector(".slider-card").appendChild(slid)
-// //     if (step == slid.length -1) {
-// //         step = 0
-// //     } else { 
-// //         step--
-// //     }
-// //     offs = 0
-// // }
-// // drowR()
-// let slider = document.querySelector(".slider-card")
-//     cards = document.querySelectorAll(".cards")
-
-// document.querySelector(".cards-slider.left").addEventListener('click', function() {
-//     // offs += 1140
-//     // if(offs > 1052) {
-//     //     offs = 0
-//         drowL()
-//     //}
-//     viewport = offs * viewport - viewport + "px"
-
-// })
-
-// document.querySelector(".cards-slider.right").addEventListener('click', function() {
-//     // offs -= 1140
-//     // if(offs < 0) {
-//     //     offs = -1052
-//         drowL()
-//     //}
-//     viewport = offs * viewport + "px"
-
-// })
