@@ -531,3 +531,22 @@
 //     return elem
 // }
 // $('.slider')forEach
+
+
+// let family = [{'name':'apple', 'delivery_time': '11:00', 'prise':'100'}, 
+//                {'name':'pear', 'delivery_time': '12:00', 'prise':'100'}, 
+//                {'name':'melon', 'delivery_time': '13:00', 'prise':'100'}, 
+//                {'name':'apple', 'delivery_time': '11:00', 'prise':'100'}];
+               
+//     let result = family.reduce((acc, item) => { 
+//     let oldItem = acc.find(oldItem => oldItem.name === item.name);
+//     if (oldItem) {
+//         oldItem.prise = ""+((+oldItem.prise)+(+item.prise))} 
+//     else {
+//         acc.push(item) 
+//     }
+//     return acc;
+//     }, 
+//     []);
+    
+//     console.log(result);
