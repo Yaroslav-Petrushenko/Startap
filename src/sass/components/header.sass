@@ -11,11 +11,13 @@
     //transition: background-position .2s linear
 .top
     justify-content: space-between
+    position: fixed
     align-items: center
     padding-top: 40rem
+    left: 0
+    right: 0
 .logo
     a
-        padding-left: 30rem
         margin: 0
         font-size: 24rem
         color: #ffffff
@@ -27,12 +29,12 @@
 
 .PricingTable
     position: absolute
-    top: 32%
+    top: 40%
     left: 50%
     pointer-events: none
     text-align: center
     opacity: 0
-    transform: translate(-50%, 0%) 
+    transform: translate(120%, 0%) 
     transition: all 1.5s ease
     h1
         margin: 0
@@ -54,22 +56,23 @@
     a
         
         pointer-events: all
-._active-anim
+.PricingTable._active-anim
     transform: translate(-50%, -50%)
-    opacity: 1
+    opacity: 1 !important
     
 
 .top-menu 
-    
-    padding-right: 30rem
     li
+        margin-right: 0rem
+        +media(900)
+            margin-right: 30rem
         a 
             font-size: 14rem
             letter-spacing: 0rem
             color: #ffffff
             font-weight: 400
             font-family: "Montserrat"
-            padding: 15px 20px
+            //padding: 15px 20px
             position: relative
             &::before
                 content: ""
@@ -81,10 +84,15 @@
                 background-color: transparent
             &:hover::before
                 background-color: #fff
+.top-menu
+    li:last-child
+        margin-right: 0
 .navmenu
-    
+    text-align: left
     display: none
-    +media(1030)
+    li 
+        
+    +media(900)
         display: flex
         position: relative   
         flex-direction: row
@@ -94,10 +102,9 @@
 .hamburger
     height: 50px
     display: flex
-    position: fixed
     flex-direction: column
     justify-content: center
-    +media(1030)
+    +media(900)
         display: none
     span
         margin: 4px 0
@@ -113,7 +120,6 @@
     flex-direction: column
     text-align: center
     top: 100px
-    left: 0
     right: 0
     background-size: cover
     
@@ -123,6 +129,10 @@
     ul
         flex-direction: column
         align-items: center
+        width: 100%
+        height: 100%
+        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45))
+
     li
         a
             display: inline-block

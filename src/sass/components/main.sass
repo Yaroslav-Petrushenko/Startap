@@ -30,10 +30,33 @@
         font-weight: 40
         font-family: "Roboto Slab"
 .service-list
+    justify-content: center
     flex-direction: column
     +media(728)
         justify-content: center
         flex-direction: row
+.clean
+    opacity: 0
+    transition: all 1s ease
+    transform: translate(-120%, 0%) 
+
+.clean._active-anim
+    transform: translate(0%, 0%)
+    opacity: 1
+.rock-solid
+    opacity: 0
+    transition: all 1s ease
+    transform: translate(0%, 120%) 
+.rock-solid._active-anim
+    transform: translate(0%, 0%)
+    opacity: 1
+.expert
+    opacity: 0
+    transition: all 1s ease
+    transform: translate(120%, 0%) 
+.expert._active-anim
+    transform: translate(0%, 0%)
+    opacity: 1
 .personal
     text-align: center
     padding: 5rem
@@ -104,6 +127,9 @@
     // justify-content: space-between
     flex-direction: column
     p
+        opacity: 0
+        transition: all 4s ease
+        transform: translate(0%, 0%) 
         padding-bottom: 30rem
         text-align: left
         font-size: 14rem
@@ -121,6 +147,9 @@
         flex-direction: row
     
 
+.about-text p._active-anim
+    transform: translate(0%, 0%)
+    opacity: 1
 .aboutPeopleCard
     position: relative
     // overflow: hidden
@@ -186,6 +215,7 @@
     position: absolute
     bottom: 10%
     left: 30%
+    transform: translateX(-10%)
     a
         width: 30rem
         height: 30rem
@@ -209,28 +239,6 @@
         background-position: -137rem -11rem 
         &:hover
             background-position: -130rem -56rem 
-
-// a
-//     .tw
-  
-
-
-// a
-//     .gg
-
-
-    
-
-// a.fb:hover{
-//   background-position: -1px -22px;
-// }
-
-// a.tw:hover{
-//   background-position: -34px -23px;
-// }
-
-// a.in:hover{
-//   background-position: -13px -22px ;
 
 .latest-works
     padding: 100rem 0
@@ -412,10 +420,16 @@
         font-family: "Roboto Slab"
         text-align: center
 .blogPost
+    opacity: 0
+    transition: all 2s ease
+    transform: translate(-120%, 0%) 
     flex-direction: column
     +media(1032)
         flex-direction: row
 
+.blogPost._active-anim
+    transform: translate(0%, 0%)
+    opacity: 1
 
 .blog-img
     margin: 0 auto
