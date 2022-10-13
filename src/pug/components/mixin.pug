@@ -84,8 +84,8 @@
     }
 -
     let brands = [
-        {url: "#", src: "img/deorham.png", alt: "deorham"},
         {url: "#", src: "img/ratings.png", alt: "ratings"},
+        {url: "#", src: "img/deorham.png", alt: "deorham"},
         {url: "#", src: "img/malik.png", alt: "makikMedia"},
         {url: "#", src: "img/bcause.png", alt: "bcause"},
         {url: "#", src: "img/wompify.png", alt: "wompify"}
@@ -104,8 +104,8 @@ mixin aboutPeople (item)
         figcaption.about-people
             .people-img
                 picture 
-                    source(srcset=item.src + ".webp", tipe="image/webp")
-                    img(src=item.src + ".png", alt=item.alt)
+                    source(srcset=item.src + ".webp", tipe="image/webp", data-src="lazy.jpg")
+                    img(src=item.src + ".png", alt=item.alt, data-src="lazy.jpg")
                 .employee-social.flex
                     a.fb(href="#")
                     a.tw(href="#") 
@@ -115,7 +115,7 @@ mixin aboutPeople (item)
                 p.people-name #{item.employeeName}
                 p.des-people #{item.description}
 
-mixin blogPost (item)
+mixin blogPost (item, myClass)
     .blog-img
         img(src=item.src, alt=item.alt)
     .blog-info
@@ -129,10 +129,15 @@ mixin blogPost (item)
                     span Khalil 
                     | Uddin in 
                     span Development!
-        p.text-info #{item.description}
-        a(href="#") Read more
+        .text-post
+            p.text-info #{item.description}
+        .more-post
+            p.text-info #{item.description}
+            p.text-info #{item.description}
+            p.text-info #{item.description}
+        a.more-text(href="#popupBl" class=myClass) Read more
 
 mixin brand (items)
     for item in items 
-        a(href=item.url) 
+        a.br(href=item.url) 
             img(src=item.src, alt=item.alt)

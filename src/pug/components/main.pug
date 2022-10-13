@@ -43,7 +43,9 @@ section.about#about
             .ap.patlatiy
                 +aboutPeople (aboutPeoples.ShamimMia)
             .ap.chorniy
-                +aboutPeople (aboutPeoples.JohnDoe)    
+                +aboutPeople (aboutPeoples.JohnDoe)   
+            .ap.smazl
+                +aboutPeople (aboutPeoples.RubelMiah) 
 section.latest-works#works
     h2 Latest Works
     .latest-menu.flex
@@ -74,14 +76,16 @@ section.blog#blog
         .wrapper
             h2 Recent blog posts
             h5 Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
-            .blogPost.flex._anim-start._anim-no
-                +blogPost (blogPosts.blogOne)
+            .blogPostOne.flex._anim-start._anim-no
+                +blogPost (blogPosts.blogOne, "show-more")
             hr.blogHr
             .blogPost.flex._anim-start._anim-no
-                +blogPost (blogPosts.blogTwo)
+                +blogPost (blogPosts.blogTwo, "popup-link")
 section.clientQuotesBrands#client
-    .brands.wrapper.flex
-        +brand(brands)
+    .wrapper
+        .brands.sliderBrand#sliderBrand
+            .slider-card
+                +brand(brands)
     .guotes
         h4 "Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”
         p John Doe, Google Inc.

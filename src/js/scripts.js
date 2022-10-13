@@ -13,6 +13,26 @@ hamburger.onclick = function () {
     nmenu.classList.toggle("active-burger")
 }
 
+// Header menu
+const headerSection = document.querySelector('.header-section')
+let lastScrollTop = 0
+function menuBackground() {
+    let scrltop = window.pageYOffset || document.documentElement.scrollTop
+    if (scrltop > lastScrollTop){
+        headerSection.classList.add("headerHid")
+    } else {
+        headerSection.classList.remove("headerHid")
+    }
+    lastScrollTop = scrltop <= 0 ? 0 : scrltop
+
+    if (window.pageYOffset > (window.innerHeight / 4)) {
+        headerSection.style.background = "linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45))"
+    } else {
+        headerSection.style.background = "transparent"
+    }
+}
+window.addEventListener(`scroll`, menuBackground)
+
 //localStorage
 // window.addEventListener("load", function(event) {
 //     alert("All resources finished loading!")

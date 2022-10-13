@@ -1,8 +1,34 @@
-//slider by Hashtag team
+/** slider by Hashtag team 
+ * .slider                          обов'язковий клас для слайдера
+ *  id                              обов'язково задати id 
+ * .slider-card                     контейнер слайдів
+ * .cards-slider                    клас стилів css для кнопок .left .right
+ *  const sliderProps = {
+        slideToScrollAll: false,    скролити одразу всі видимі слайди
+        gap: 20,                    відстань між слайдами
+        arrows: false,              наявність стрілочок 
+        autoPlay: true,             автоскрол
+        autoPlaySpeed: 3000,        швидкість автоскрола
+    }
+    infinitySlider (selector, settings)
+    selector - шлях до слайдера,
+    settings - нестандартні налаштування sliderProps
+ **/
+
 const sliderProps = {
-    arrows: true, 
+    arrows: true,
+    autoPlay: false,
+    gap: 20
 }
-function infinitySlider (selector, settings) { // selector - шлях до слайдера. settings - нестандартні налаштування
+const sliderPropsBrand = {
+    arrows: false,
+    autoPlay: true,
+    gap: 60
+}
+function infinitySlider (selector, settings) {
+    window.onresize = function(){
+        infinitySlider(selector, settings)
+    }
     let btnRight,
         btnLeft,
         sliderInterval,
@@ -17,15 +43,15 @@ function infinitySlider (selector, settings) { // selector - шлях до сл�
         distanceCards,
         constCardWidth,
         cardsCount,
+        realCardlendth,
         defaultSettings = {
             slideToScrollAll: false,
-            gap: 20,//відстань між слайдами
+            gap: 30,
             arrows: false,
-            autoPlay: false,
+            autoPlay: true,
             autoPlaySpeed: 3000,
         }
-    
-    
+    // console.log(sliderCard)
     slider.querySelectorAll('.clone').forEach(clone => {
         clone.remove()
     }) 
@@ -36,15 +62,12 @@ function infinitySlider (selector, settings) { // selector - шлях до сл�
         constCardWidth = cards[0].getBoundingClientRect().width
         localStorage[slider.id] = constCardWidth
     }
-
     cardsCount = Math.floor(sliderWidth / constCardWidth)
     //let connectTheObject = Object.assign(settings, defaultSettings)
     settings = {...defaultSettings, ...settings} // берем всі аргументи обох об'єктів settings в кінці щоб перекрити новими властивостями яких не вистачає
     distanceCards = settings.gap
     widthCards = (sliderWidth - ((cardsCount - 1) * distanceCards)) / cardsCount
     positionCards = 0 - (distanceCards + widthCards)
-    
-    
     if (settings.arrows) createArr()
     btnLeft = slider.querySelector('.left')
     btnRight = slider.querySelector('.right')
@@ -61,13 +84,25 @@ function infinitySlider (selector, settings) { // selector - шлях до сл�
         cloneCard.classList.add("clone")
         cloneCard.style.transition = 'none'
         sliderCard.insertAdjacentElement("afterbegin", cloneCard)
+        realCardlendth = cards.length - slider.querySelectorAll('.clone').length 
         counter++
-    } while (counter <= cardsCount && settings.slideToScrollAll)
-
+    } while (counter <= realCardlendth && settings.slideToScrollAll)
+    if(settings.slideToScrollAll) {
+        counter = 0
+        while (counter < realCardlendth){
+            cloneCard = cards[counter].cloneNode(true)
+            cloneCard.classList.add("clone")
+            cloneCard.style.transition = 'none'
+            sliderCard.insertAdjacentElement("beforeend", cloneCard)
+            counter++
+        }
+    }
     if (cloneCard.classList.contains('clone')) {
-        setTimeout(() =>{
-            cloneCard.style.transition = 'all 1s ease-in-out'
-        }, 1)
+        slider.querySelectorAll('.clone').forEach(cloneCard => {
+            setTimeout(() =>{
+                cloneCard.style.transition = 'all 1s ease-in-out'
+            }, 1)
+        })
     }
     cards = sliderCard.children
     for (let i = 0; i < cards.length; i++) {
@@ -78,7 +113,7 @@ function infinitySlider (selector, settings) { // selector - шлях до сл�
 
     function createArr() {
         const creArr = document.querySelectorAll('.cards-slider').length
-        if (creArr < 1){//!document.querySelectorAll('.cards-slider').length && settings.arrows && (cards.length - 1) > cardsCount
+        if (creArr < 1){
             btnRight  = document.createElement('span')
             btnLeft = document.createElement('span')
             btnLeft.className = 'cards-slider left'
@@ -92,12 +127,14 @@ function infinitySlider (selector, settings) { // selector - шлях до сл�
                 changeSlide("right")
             }   
         } 
-        
     } 
     
     function shuffleCard () {
         cards = sliderCard.children
         positionCards = 0 - (distanceCards + widthCards)
+        if (settings.slideToScrollAll){
+            positionCards = 0 - (distanceCards + widthCards) * realCardlendth
+        }
         for(let i = 0; i < cards.length; i++){
             cards[i].style.left = positionCards + 'px'
             positionCards += (distanceCards + widthCards)
@@ -109,38 +146,53 @@ function infinitySlider (selector, settings) { // selector - шлях до сл�
         sliderWidth = sliderCard.getBoundingClientRect().width
         cardsCount = Math.floor(sliderWidth / constCardWidth)
         widthCards = (sliderWidth - ((cardsCount - 1) * distanceCards)) / cardsCount
-        //cards = document.querySelector(selector).children
+        cards = sliderCard.children
         if (direction == "left") {
-            cards[cards.length - 1].remove()
-            let preLastEl = cards[cards.length - 1].cloneNode(true)
-            preLastEl.classList.add("clone")
-            sliderCard.insertAdjacentElement("afterbegin", preLastEl)
-            cards[1].classList.remove('clone')
+            if (settings.slideToScrollAll){
+                for (let i = 0; i < cardsCount; i++){
+                    sliderCard.insertAdjacentElement("afterbegin", cards[cards.length -1])
+                }
+            } else { 
+                cards[cards.length - 1].remove()
+                let preLastEl = cards[cards.length - 1].cloneNode(true)
+                preLastEl.classList.add("clone")
+                sliderCard.insertAdjacentElement("afterbegin", preLastEl)
+                cards[1].classList.remove('clone')
+            }
         } else if (direction == "right") {
-            cards[0].remove()
-            let preFirstEl = cards[0].cloneNode(true)
-            preFirstEl.classList.add("clone")
-            sliderCard.insertAdjacentElement("beforeend", preFirstEl)
-            cards[cards.length-2].classList.remove('clone')
+            if (settings.slideToScrollAll){
+                for (let i = 0; i < cardsCount; i++){
+                    sliderCard.insertAdjacentElement("beforeend", cards[0])
+                }
+            } else {
+                cards[0].remove()
+                let preFirstEl = cards[0].cloneNode(true)
+                preFirstEl.classList.add("clone")
+                sliderCard.insertAdjacentElement("beforeend", preFirstEl)
+                cards[cards.length-2].classList.remove('clone')
+            }
         }
         shuffleCard()
     }
-    if (settings.autoPlay && (cards.length -1) > cardsCount){
-        
-        sliderInterval = setInterval(() => {
-            changeSlide('right')
-            console.log('rabotai')
-        }, settings.autoPlaySpeed)
-        localStorage[slider.id + 'interval'] = sliderInterval
+    function autoPlaySlider () {
+        if (settings.autoPlay && (cards.length -1) > cardsCount){
+            sliderInterval = setInterval(() => {
+                changeSlide('right')
+                console.log('rabotai')
+            }, settings.autoPlaySpeed)
+            localStorage[slider.id + 'interval'] = sliderInterval
+        }
+    }
+    if (settings.autoPlay) {
+        autoPlaySlider ()
+    }
+    slider.onmouseenter = () => {
+        clearInterval(localStorage[slider.id + 'interval'])
+    }
+    slider.onmouseleave = () => {
+        autoPlaySlider()
     }
 }
-
-window.onresize = function(){
-    infinitySlider(".slider", sliderProps)
-}
-
 infinitySlider(".slider", sliderProps)
-
-
-//коли наводимо курсор миши автоплей повинен заупинятися і на кнопку обнуляти 
+infinitySlider(".sliderBrand", sliderPropsBrand)
 
