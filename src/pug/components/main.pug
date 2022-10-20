@@ -44,32 +44,82 @@ section.about#about
                 +aboutPeople (aboutPeoples.ShamimMia)
             .ap.chorniy
                 +aboutPeople (aboutPeoples.JohnDoe)   
-            .ap.smazl
-                +aboutPeople (aboutPeoples.RubelMiah) 
 section.latest-works#works
     h2 Latest Works
     .latest-menu.flex
-        a(href="#")  All     
-        a(href="#")  Branding      
-        a(href="#")  Design       
-        a(href="#")  Development      
-        a(href="#")  Strategy
+        a.filterCategory(href="#" data-filter="all")  All     
+        a.filterCategory(href="#" data-filter="branding")  Branding      
+        a.filterCategory(href="#" data-filter="design")  Design       
+        a.filterCategory(href="#" data-filter="development")  Development      
+        a.filterCategory(href="#" data-filter="strategy")  Strategy
     .latest-img.wrapper
-        a.one(href="#") 
-        a.two(href="#")
-        a.three(href="#")
-        a.four(href="#")
-        a.five(href="#")
-        a.six(href="#")
-        a.seven(href="#")
-        a.eight(href="#")
-        a.nine(href="#")
-        
-
-
+        .worksCards.branding
+            .one
+                img(src="img/1.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Branding
+                a(href="#").view Add to +
+        .worksCards.branding
+            .two
+                img(src="img/2.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Branding
+                a(href="#").view Add to +
+        .worksCards.development
+            .three
+                img(src="img/3.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Development 
+                a(href="#").view Add to +
+        .worksCards.design
+            .four
+                img(src="img/4.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Design
+                a(href="#").view Add to +
+        .worksCards.branding
+            .five
+                img(src="img/5.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Branding
+                a(href="#").view Add to +
+        .worksCards.strategy
+            .six
+                img(src="img/6.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Strategy
+                a(href="#").view Add to +
+        .worksCards.development
+            .seven
+                img(src="img/7.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Development 
+                a(href="#").view Add to +
+        .worksCards.design
+            .eight
+                img(src="img/8.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Design   
+                a(href="#").view Add to +
+        .worksCards.strategy
+            .nine
+                img(src="img/9.jpg", alt="")
+            .worksCardsHover.flex
+                p Hair Dresser
+                p.branding Strategy
+                a(href="#").view Add to +
 section.Get-in-Touch.parallax
     p Do you like OUR WORK so far? <br> Let's talk about YOUR PROJECT!
-    a(class='white' href="#") Get in Touch
+    .top-menu
+        a(class='white' href="#contact") Get in Touch
 
 
 section.blog#blog
@@ -77,7 +127,7 @@ section.blog#blog
             h2 Recent blog posts
             h5 Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
             .blogPostOne.flex._anim-start._anim-no
-                +blogPost (blogPosts.blogOne, "show-more")
+                +blogPost (blogPosts.blogOne, "blogMore")
             hr.blogHr
             .blogPost.flex._anim-start._anim-no
                 +blogPost (blogPosts.blogTwo, "popup-link")
@@ -86,10 +136,17 @@ section.clientQuotesBrands#client
         .brands.sliderBrand#sliderBrand
             .slider-card
                 +brand(brands)
-    .guotes
-        h4 "Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”
-        p John Doe, Google Inc.
-
+        .guotes.sliderQuotes#guotesSlider
+            .slider-card
+                .guote
+                    h4 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, omnis aut exercitationem illo error asperiores ipsam laboriosam ratione reprehenderit dolore.”
+                    p Google Inc.
+                .guote
+                    h4 "Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”
+                    p John Doe, Google Inc.
+                .guote
+                    h4 "We’ll contact you as as possible. We don’t reply on Monday. ”
+                    p Doe, Mazda.
 section.contact#contact
         .wrapper
             h2 Get in touch

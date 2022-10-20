@@ -151,9 +151,7 @@
 .about-text p._active-anim
     transform: translate(0%, 0%)
     opacity: 1
-.aboutPeopleCard
-    position: relative
-    // overflow: hidden
+
 .pt
     padding-top: 30rem
     padding-bottom: 70rem
@@ -188,39 +186,31 @@
     right: 0
     &::before
         transform: translate(-50%, -50%) rotate(-45deg)
-.slider-card
-    width: 100%
-    position: relative
-    overflow: hidden
+
 .ap
-    transition: all 1s ease-in-out
-    position: absolute
-    // min-width: 263rem
-    //max-width: 546rem
     img
         width: 100%
         min-height: 256rem
-    
-    // +media(585)
-    //     width: auto
-        // img
-        //     width: auto
-
-.ap
     figure
         margin: 0
+
 .people-img
     position: relative
+.about-people
+    &:hover .employee-social
+        opacity: 1
+        visibility: visible
+        transition: all .5s ease
 .employee-social
+    opacity: 0
     display: block
     position: absolute
     bottom: 10%
-    left: 30%
-    transform: translateX(-10%)
+    left: 50%
+    transform: translateX(-50%)
     a
         width: 30rem
         height: 30rem
-        margin: 2rem 
         background: url(../img/sprite1.png) no-repeat
         transition: all 0.3s ease
 
@@ -320,6 +310,7 @@
     font-family: "Roboto Slab"
 
 .latest-img
+    // position: relative
     margin-top: 65rem
     flex-direction: column
     display: grid
@@ -329,65 +320,65 @@
         grid-template-columns: repeat(2, 1fr) 
     +media(1240)
         grid-template-columns: repeat(3, 1fr) 
-    a
-        justify-self: center
-        width: 290rem
-        height: 290rem
-        +media(380)
-            width: 360rem
-            height: 320rem
-        
-        +media(1240)
-            justify-self: start
 
-            
-        
+.worksCards
+    position: relative
+    justify-self: center
+    width: 290rem
+    height: 290rem
+    &:hover .worksCardsHover
+        visibility: visible
+        opacity: 1
+        transition: all .5s ease
+    +media(380)
+        width: 360rem
+        height: 320rem
     
-.one
-    background: url(../img/1.jpg)
-    &:hover
-        opacity: 2
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/1.jpg)
-.two
-    background: url(../img/2.jpg)
-    &:hover
-        opacity: 2
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/2.jpg)
-.three
-    background: url(../img/3.jpg)
-    &:hover
-        opacity: 2
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/3.jpg)
-.four
-    background: url(../img/4.jpg)
-    &:hover
-        opacity: 2
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/4.jpg)
-.five
-    background: url(../img/5.jpg)
-    &:hover
-        opacity: 2
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/5.jpg)
-.six
-    background: url(../img/6.jpg)
-    &:hover
-        opacity: 2
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/6.jpg)
-.seven
-    background: url(../img/7.jpg)
-    &:hover
-        opacity: 2
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/7.jpg)
-.eight
-    background: url(../img/8.jpg)
-    &:hover
-        opacity: 2
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/8.jpg)
-.nine
-    background: url(../img/9.jpg)
-    &:hover
-        opacity: 2
-        background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45)), url(../img/9.jpg)
+    +media(1240)
+        justify-self: start
+
+.worksCardsHover
+    opacity: 0
+    transition: all .5s ease
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45))
+    p
+        font-size: 18px
+        color: #ffffff
+        font-weight: 400
+        font-family: "Montserrat"
+        text-align: center
+    .branding
+        font-size: 12px
+        line-height: 24px
+        color: #ffffff
+        font-weight: 400
+        font-family: "Roboto Slab"
+        text-align: center
+    .view
+        border: 0
+        padding: 10px 20rem
+        font-size: 14px
+        letter-spacing: 1px
+        line-height: 24px
+        text-transform: uppercase
+        color: #c0301c
+        background-color: #fff
+        font-weight: 400
+        font-family: "Roboto Slab"
+        text-align: center
+        transition: all .5s ease
+        &:hover
+            transform: scale(1.2)
+.anim-worksCards
+    display: none
 .blog
     padding-top: 100rem
     h2
@@ -442,20 +433,9 @@
 .blogPostOne._active-anim
     transform: translate(0%, 0%)
     opacity: 1
-// .blog-img
-//     margin: 0 auto
-//     padding-bottom: 20rem
-    
-//     +media(1032)
-//         flex-direction: row
-//         margin-right: 35rem
-//     img
-//         max-width: 290rem
-//         +media(426)
-//             max-width: 460rem
+
 .more-post
     transition: all .3s ease
-    // max-height: 0px
     p.text-info
         padding: 0
         max-height: 0px
@@ -558,19 +538,56 @@
     margin-top: 100rem
 .brands
     margin: 0 auto
-    max-width: 920rem
-.br 
-    top: 50%
-    transform: translateY(-50%)
-    transition: all 1s ease-in-out
-    position: absolute
-    img
-        object-fit: contain
-        width: 100%
+    max-width: 900rem
+    a
+        display: inline-flex
+        align-items: center
+        text-align: center
+        justify-content: center
+        width: 142rem
+        height: 50rem
+        img
+            height: 100%
+            width: 100%
+            object-fit: contain
 
+
+.guote.activeFade
+    opacity: 1
+    visibility: visible
+// // .name-review
+// //     padding-top: 40rem
+.quoteDots-container
+    margin: 0 auto
+    left: 50%
+    transform: translate(-50%)
+.quote-dot
+    display: inline-block
+    margin: 0 5rem
+    width: 13rem
+    height: 13rem
+    border-radius: 50%
+    background-color: #ddd
+    transition: all .5s ease
+    cursor: pointer
+.quote-dot.activeFade
+    background-color: #c0301c
 .guotes
     margin: 0 auto
     max-width: 790rem
+    
+.textGuote
+    margin: 20rem auto
+    width: 90%
+    font-size: 18rem
+    line-height: 30rem
+    color: #555555
+    font-weight: 400
+    font-family: "Roboto Slab"
+    text-align: center
+.guote
+    margin: 0 auto
+    opacity: 0
     h4
         margin: 20rem auto
         width: 90%
@@ -581,7 +598,6 @@
         font-family: "Roboto Slab"
         text-align: center
     p
-        width: 790rem
         font-size: 18rem
         color: #555555
         font-weight: 400

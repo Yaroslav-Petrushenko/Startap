@@ -48,14 +48,14 @@ function popupOpen(curentPopup) {
 
 function popupClose(popupActive, doUnlock = true) {
     if (unlock) {
-        popupActive.classList.remove('open');
+        popupActive.classList.remove('open')
         if (doUnlock) {
-            bodyUnLock();
+            bodyUnLock()
         }
     }
 }
 function bodyLock () {
-    const lockPaddingValue = window.innerWidth - document.querySelector('section').offsetWidth + 'px'
+    const lockPaddingValue = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px'
 
     for ( let i = 0; i < lockPadding.length; i++) {
         const el = lockPadding[i]
@@ -88,15 +88,15 @@ function bodyUnLock() {
     }, timeout);
 }
 
-const blogShowMore = document.querySelector('.show-more');
-const blogTwo = document.querySelector('.blogPostOne');
+let blogMore = document.querySelector('.blogMore')
+let blogOne = document.querySelector('.blogPostOne')
 
-blogShowMore.addEventListener("click", function (e) {
-    e.preventDefault()
-    blogTwo.classList.toggle('active');
-    if (blogTwo.classList.contains('active')) {
-        blogShowMore.innerHTML = "Hide";
+blogMore.addEventListener("click", function (event) {
+    event.preventDefault()
+    blogOne.classList.toggle('active')
+    if (blogOne.classList.contains('active')) {
+        blogMore.innerHTML = "Close"
     } else {
-        blogShowMore.innerHTML = "Read more";
+        blogMore.innerHTML = "Read more"
     }
-});
+})
