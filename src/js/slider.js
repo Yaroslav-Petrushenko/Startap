@@ -31,8 +31,8 @@ const sliderProppsBrands = {
     autoplay: false
 }
 const sliderQuotes = {
-    autoplay: true,
-    arrows: true,
+    autoplay: false,
+    arrows: false,
     autoplayspeed: 4000,
     fadeOut: true,
     dots: true,
@@ -40,6 +40,21 @@ const sliderQuotes = {
 }
 
 window.onresize = function () {
+    infinitySlider(".slider", sliderProps)
+    infinitySlider(".sliderBrand", sliderProppsBrands)
+    infinitySlider(".sliderQuotes", sliderQuotes)
+}
+window.ontouchmove = function () {
+    infinitySlider(".slider", sliderProps)
+    infinitySlider(".sliderBrand", sliderProppsBrands)
+    infinitySlider(".sliderQuotes", sliderQuotes)
+}
+window.onwheel = function () {
+    infinitySlider(".slider", sliderProps)
+    infinitySlider(".sliderBrand", sliderProppsBrands)
+    infinitySlider(".sliderQuotes", sliderQuotes)
+}
+window.onscroll = function () {
     infinitySlider(".slider", sliderProps)
     infinitySlider(".sliderBrand", sliderProppsBrands)
     infinitySlider(".sliderQuotes", sliderQuotes)
@@ -216,12 +231,28 @@ function infinitySlider(selector, settings) {
         cardsCount = Math.floor(sliderWidth / (parseInt(settings.baseCardWidth) + settings.gap))
         widthCards = (sliderWidth - ((cardsCount - 1) * distanceCards)) / cardsCount
         cards = sliderCard.children
+        let numGuote = 0
+        for (let i = 0; i < cards.length; i++) {
+            if (cards[i].classList.contains("activeFade")) {
+                numGuote = i
+            }
+        } 
         if (direction == "left") {
             if (settings.slideToScrollAll) {
                 for (let i = 0; i < cardsCount; i++) {
                     sliderCard.insertAdjacentElement("afterbegin", cards[cards.length - 1])
                 }
 
+            } else if (settings.fadeOut){
+                cards[numGuote].classList.remove("activeFade")
+                dot[numGuote].classList.remove("activeFade")
+                if (cards[numGuote -1]){
+                    numGuote -=1
+                } else {
+                    numGuote = cards.length -1
+                }
+                setTimeout(() => cards[numGuote].classList.add("activeFade"), 1000)
+                setTimeout(() => dot[numGuote].classList.add("activeFade"), 1000)
             } else {
                 cards[cards.length - 1].remove()
                 let preLastEl = cards[cards.length - 1].cloneNode(true)
@@ -229,13 +260,23 @@ function infinitySlider(selector, settings) {
                 sliderCard.insertAdjacentElement("afterbegin", preLastEl)
                 cards[1].classList.remove("clone")
 
-            }
+            } 
         } else if (direction == "right") {
             if (settings.slideToScrollAll) {
                 for (let i = 0; i < cardsCount; i++) {
                     sliderCard.insertAdjacentElement("beforeend", cards[0])
                 }
 
+            } else if (settings.fadeOut){
+                cards[numGuote].classList.remove("activeFade")
+                dot[numGuote].classList.remove("activeFade")
+                if (cards[numGuote +1]){
+                    numGuote ++
+                } else {
+                    numGuote = 0
+                }
+                setTimeout(() => cards[numGuote].classList.add("activeFade"), 1000)
+                setTimeout(() => dot[numGuote].classList.add("activeFade"), 1000)
             } else {
                 cards[0].remove()
                 let preFirstEl = cards[0].cloneNode(true)
@@ -243,8 +284,10 @@ function infinitySlider(selector, settings) {
                 sliderCard.insertAdjacentElement("beforeend", preFirstEl)
                 cards[cards.length - 2].classList.remove("clone")
             }
-        }
-        shuffleCard()
+        } 
+        if (!settings.fadeOut){
+            shuffleCard() 
+        } 
     }
 
     function autoPlaySlider() {
