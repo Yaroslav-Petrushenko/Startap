@@ -356,7 +356,7 @@
         font-family: "Montserrat"
         text-align: center
     .branding
-        font-size: 12px
+        font-size: 20px
         line-height: 24px
         color: #ffffff
         font-weight: 400
@@ -377,6 +377,12 @@
         transition: all .5s ease
         &:hover
             transform: scale(1.2)
+    .price
+        font-size: 12px
+        color: #ffffff
+        font-weight: 400
+        font-family: "Roboto Slab"
+        text-align: center
 .anim-worksCards
     display: none
 .blog
@@ -557,11 +563,11 @@
     visibility: visible
 // // .name-review
 // //     padding-top: 40rem
-.quoteDots-container
+.dot-container
     margin: 0 auto
     left: 50%
     transform: translate(-50%)
-.quote-dot
+.dot
     display: inline-block
     margin: 0 5rem
     width: 13rem
@@ -570,11 +576,12 @@
     background-color: #ddd
     transition: all .5s ease
     cursor: pointer
-.quote-dot.activeFade
+.dot.activeFade
     background-color: #c0301c
 .guotes
     margin: 0 auto
     max-width: 790rem
+
     
 .textGuote
     margin: 20rem auto
@@ -588,6 +595,7 @@
 .guote
     margin: 0 auto
     opacity: 0
+    width: 100%
     h4
         margin: 20rem auto
         width: 90%
