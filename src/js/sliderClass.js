@@ -34,6 +34,7 @@ class InfinitySlider {
         this.sliderDots
         this.touchPoint
         this.numGuote = 0
+        this.baseWidthFadeOut
     }
 
     static defoltSettings = {
@@ -47,9 +48,13 @@ class InfinitySlider {
         autoplayspeed: 3000,
         baseCardWidth: this.sliderWidth + "px",
         transitionslider: "all 1.3s cubic-bezier(.44,-0.13,.43,1.13)"
+        
     }
+
     init(){
-        console.log(this.settings)
+        if (this.settings.fadeOut) {
+            this.baseWidthFadeOut = this.settings.baseCardWidth = this.sliderWidth
+        }
         this.slider.querySelectorAll(".clone").forEach(clone => {
             clone.remove()
         })
@@ -61,6 +66,9 @@ class InfinitySlider {
         this.sliderCard.style.width = "100%"
         this.sliderCard.style.overflow = "hidden"
         this.cardsCount = Math.floor(this.sliderWidth / (parseInt(this.settings.baseCardWidth) + this.settings.gap))
+        console.log(this.cardsCount)
+        console.log(this.settings.baseCardWidth)
+
         this.distanceCards = this.settings.gap
         this.widthCards = (this.sliderWidth - ((this.cardsCount - 1) * this.distanceCards)) / this.cardsCount
         this.positionCards = 0 - (this.distanceCards + this.widthCards)
@@ -112,9 +120,7 @@ class InfinitySlider {
         if (this.settings.dots) {
             this.createDots()
         }
-        // if (this.settings.autoplay && this.realCardsLenth > this.cardsCount) {
-        //     this.autoPlaySlider()
-        // }
+        
         this.dot = this.slider.querySelectorAll('.dot')
         this.dot.forEach(element => {
             element.onclick = () => {
@@ -310,9 +316,9 @@ class InfinitySlider {
 
     autoPlaySlider() {
         clearInterval(localStorage[this.slider.id + "interval"])
+        
         if (this.settings.fadeOut) {
             this.numGuote = 0
-            
             for (let i = 0; i < this.cards.length; i++) {
                 if (this.cards[i].classList.contains("activeFade")) {
                     this.numGuote = i
@@ -369,14 +375,17 @@ let sliderBrand = new InfinitySlider(".sliderBrand", {
     autoplay: true
 })
 let sliderQuotes = new InfinitySlider(".sliderQuotes", {
-    autoplay: true,
+    autoplay: false,
     autoplayspeed: 4000,
     fadeOut: true,
     dots: true,
-    baseCardWidth: "790rem",
     distanceDots: 40,
+    baseCardWidth: this.baseWidthFadeOut,
     arrows: false
+
 })
+console.log(sliderQuotes)
+
 sliderPeople.init()
 sliderBrand.init()
 sliderQuotes.init()
