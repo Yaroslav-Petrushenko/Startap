@@ -1,27 +1,45 @@
-/**
- * .slider -           обов'язковий клас для слайдера
-* id -                 обов'язково задати id
-* .slider-card -       обов'язковий клас для контейнера слайдів
-* .cards-slider -      клас стилів css для кнопок .left . right
- * const sliderProps = {
-        slideToScrollAll: true,     скролити одразу всі видимі слайди
-        gap: 20,                    відстань між слайдами
-        autoplay: true,             автоскрол
-        arrows: false,              наявність стрілочок
-        autoplayspeed: 3000         швидкість автоскролу
-    } 
-    infinitySlider(selector, settings) selector шлях до слайдера а settings не стандартні налаштування sliderProps
-    
- */
+// /**
+//  * .slider -           обов'язковий клас для слайдера
+// * id -                 обов'язково задати id
+// * .slider-card -       обов'язковий клас для контейнера слайдів
+// * .cards-slider -      клас стилів css для кнопок .left . right
+//  * const sliderProps = {
+//         slideToScrollAll: true,     скролити одразу всі видимі слайди
+//         gap: 20,                    відстань між слайдами
+//         autoplay: true,             автоскрол
+//         arrows: false,              наявність стрілочок
+//         autoplayspeed: 3000         швидкість автоскролу
+//     } 
+//     infinitySlider(selector, settings) selector шлях до слайдера а settings не стандартні налаштування sliderProps
+
+//  */
+
+
+//     // window.onscroll = () => {
+//     //     clearInterval(localStorage[slider.id + "interval"])
+//     //     if (slider.classList.contains("_active-anim")) {
+//     //         autoPlaySlider()
+//     //     }
+//     // }
+
+// //ontouchmove
+// //onwhill
+// //onscroll
+
+
+
 class InfinitySlider {
-    constructor(selector, settings = {}){
-        this.settings = {...InfinitySlider.defoltSettings, ...settings}
+    constructor(selector, settings = {}) {
+        this.settings = {
+            ...InfinitySlider.defoltSettings,
+            ...settings
+        }
         this.positionCards = 0
         this.slider = document.querySelector(selector)
         this.sliderCard = this.slider.querySelector(".slider-card")
-        this.sliderWidth = this.sliderCard.getBoundingClientRect().width
         this.cards = this.sliderCard.children
-        this.heightCards = 0
+        this.sliderWidth
+        this.heightCards
         this.realCardsLenth = this.cards.length
         this.widthCards
         this.btnLeft
@@ -33,8 +51,7 @@ class InfinitySlider {
         this.maxHeight
         this.sliderDots
         this.touchPoint
-        this.numGuote = 0
-        this.baseWidthFadeOut
+        this.dot
     }
 
     static defoltSettings = {
@@ -46,36 +63,41 @@ class InfinitySlider {
         autoplay: false,
         arrows: false,
         autoplayspeed: 3000,
-        baseCardWidth: this.sliderWidth + "px",
+        baseCardWidth: null,
         transitionslider: "all 1.3s cubic-bezier(.44,-0.13,.43,1.13)"
-        
     }
 
-    init(){
-        if (this.settings.fadeOut) {
-            this.baseWidthFadeOut = this.settings.baseCardWidth = this.sliderWidth
+
+    init() {
+        // this.heightCards = 0
+        this.sliderWidth = this.sliderCard.getBoundingClientRect().width
+        if (this.settings.baseCardWidth == null) {
+            this.settings.baseCardWidth = this.sliderWidth + 'px'
         }
+        // console.log(this.sliderWidth);
+
         this.slider.querySelectorAll(".clone").forEach(clone => {
             clone.remove()
         })
+
         if ((localStorage[this.slider.id + "interval"])) {
             clearInterval(localStorage[this.slider.id + "interval"])
         }
+
         this.slider.style.position = "relative"
         this.sliderCard.style.position = "relative"
         this.sliderCard.style.width = "100%"
         this.sliderCard.style.overflow = "hidden"
         this.cardsCount = Math.floor(this.sliderWidth / (parseInt(this.settings.baseCardWidth) + this.settings.gap))
-        console.log(this.cardsCount)
-        console.log(this.settings.baseCardWidth)
-
+        if (this.cardsCount == 0) this.cardsCount = 1
         this.distanceCards = this.settings.gap
         this.widthCards = (this.sliderWidth - ((this.cardsCount - 1) * this.distanceCards)) / this.cardsCount
         this.positionCards = 0 - (this.distanceCards + this.widthCards)
+        
         if (this.settings.arrows) this.createArrows()
         this.btnLeft = this.slider.querySelector(".left")
         this.btnRight = this.slider.querySelector(".right")
-    
+
         if (this.settings.arrows && this.cards.length <= this.cardsCount) {
             this.btnLeft.style.display = "none"
             this.btnRight.style.display = "none"
@@ -83,6 +105,7 @@ class InfinitySlider {
             this.btnLeft.style.display = "block"
             this.btnRight.style.display = "block"
         }
+
         if (this.settings.dots && this.realCardsLenth > 1) {
             this.createDots()
             this.dot = this.slider.querySelectorAll('.dot')
@@ -95,13 +118,14 @@ class InfinitySlider {
             this.dot[0].classList.add("activeFade")
             this.cards[0].classList.add("activeFade")
         }
-    
+
         if (!this.settings.fadeOut) {
             this.createClone()
             this.shuffleCard()
         }
         this.cards = this.sliderCard.children
-    
+        
+        this.heightCards = 0
         for (let i = 0; i < this.cards.length; i++) {
             this.cards[i].style.width = this.widthCards + 'px'
             this.cards[i].style.position = "absolute"
@@ -109,22 +133,23 @@ class InfinitySlider {
             if (this.maxHeight > this.heightCards) {
                 this.heightCards = this.maxHeight
             }
-    
+
+            this.cards[i].style.transition = 'none'
             setTimeout(() => {
                 this.cards[i].style.transition = this.settings.transitionslider
-            }, 1300);
-    
+            }, 1);
         }
-    
+
         this.sliderCard.style.height = this.heightCards + 'px'
+
         if (this.settings.dots) {
             this.createDots()
         }
-        
+
         this.dot = this.slider.querySelectorAll('.dot')
+
         this.dot.forEach(element => {
             element.onclick = () => {
-                console.log(this)
                 clearInterval(localStorage[this.slider.id + "interval"])
                 for (let i = 0; i < this.realCardsLenth; i++) {
                     this.dot[i].classList.remove("activeFade")
@@ -134,23 +159,26 @@ class InfinitySlider {
                 element.classList.add("activeFade")
             }
         })
-    
+
+
         if (this.settings.autoplay && this.realCardsLenth > this.cardsCount) {
             this.autoPlaySlider()
         }
-        
+
         this.slider.addEventListener('touchend', () => {
             if (this.settings.autoplay && this.realCardsLenth > this.cardsCount) {
                 this.autoPlaySlider()
             }
         })
-        
+
         this.touchSlider = this.touchSlider.bind(this)
-        this.slider.addEventListener('touchstart', (e) =>{
+
+        this.slider.addEventListener('touchstart', (e) => {
             this.touchPoint = e.touches[0].pageX
             this.slider.addEventListener('touchmove', this.touchSlider)
             clearInterval(localStorage[this.slider.id + "interval"])
         })
+
         this.slider.onmouseenter = () => {
             clearInterval(localStorage[this.slider.id + "interval"])
         }
@@ -159,41 +187,47 @@ class InfinitySlider {
                 this.autoPlaySlider()
             }
         }
-
+        
+        
     }
 
     createArrows() {
         const arrowsExist = this.slider.querySelectorAll(".cards-slider").length
 
         if (arrowsExist < 1) {
-            let clickAllowed = true 
+            let clickAllowed = true
             this.btnLeft = document.createElement("span")
             this.btnRight = document.createElement("span")
             this.btnLeft.className = "cards-slider left"
             this.btnRight.className = "cards-slider right"
             this.slider.insertAdjacentElement("afterbegin", this.btnLeft)
             this.slider.insertAdjacentElement("beforeend", this.btnRight)
-            
+
             this.btnLeft.onclick = () => {
-                if(clickAllowed){
+
+                if (clickAllowed) {
+
                     this.changeSlide('left')
-                    console.log(this)
                     clickAllowed = false
+
                     setTimeout(() => {
                         clickAllowed = true
-                    },parseFloat(this.cards[0].style.transitionDuration) * 1000);
+                    }, parseFloat(this.cards[0].style.transitionDuration) * 1000);
                 }
             }
+
             this.btnRight.onclick = () => {
-                if(clickAllowed){
+                if (clickAllowed) {
                     this.changeSlide("right")
+
                     clickAllowed = false
                     setTimeout(() => {
                         clickAllowed = true
-                    },parseFloat(this.cards[0].style.transitionDuration) * 1000);
+                    }, parseFloat(this.cards[0].style.transitionDuration) * 1000);
                 }
             }
         }
+
     }
 
     createClone() {
@@ -234,10 +268,11 @@ class InfinitySlider {
             }
         }
     }
-
     shuffleCard() {
+
         this.positionCards = 0 - (this.distanceCards + this.widthCards)
         this.cards = this.sliderCard.children
+
         if (this.settings.slideToScrollAll) {
             this.positionCards = 0 - (this.distanceCards + this.widthCards) * this.realCardsLenth
         }
@@ -249,14 +284,16 @@ class InfinitySlider {
 
     changeSlide(direction) {
         this.sliderWidth = this.sliderCard.getBoundingClientRect().width
+
         this.cardsCount = Math.floor(this.sliderWidth / (parseInt(this.settings.baseCardWidth) + this.settings.gap))
+        if (this.cardsCount == 0) this.cardsCount = 1
         this.widthCards = (this.sliderWidth - ((this.cardsCount - 1) * this.distanceCards)) / this.cardsCount
         this.cards = this.sliderCard.children
 
-        this.numGuote = 0
+        let numGuote = 0
         for (let i = 0; i < this.cards.length; i++) {
             if (this.cards[i].classList.contains("activeFade")) {
-                this.numGuote = i
+                numGuote = i
             }
         }
         if (direction == "left") {
@@ -264,25 +301,22 @@ class InfinitySlider {
                 for (let i = 0; i < this.cardsCount; i++) {
                     this.sliderCard.insertAdjacentElement("afterbegin", this.cards[this.cards.length - 1])
                 }
-
             } else if (this.settings.fadeOut) {
-                setTimeout(() => this.cards[this.numGuote].classList.add("activeFade"), 1000)
-                setTimeout(() => this.dot[this.numGuote].classList.add("activeFade"), 1000)
-                this.cards[this.numGuote].classList.remove("activeFade")
-                this.dot[this.numGuote].classList.remove("activeFade")
-                if (this.cards[this.numGuote - 1]) {
-                    this.numGuote--
+                setTimeout(() => this.cards[numGuote].classList.add("activeFade"), 1000)
+                setTimeout(() => this.dot[numGuote].classList.add("activeFade"), 1000)
+                this.cards[numGuote].classList.remove("activeFade")
+                this.dot[numGuote].classList.remove("activeFade")
+                if (this.cards[numGuote - 1]) {
+                    numGuote--
                 } else {
-                    this.numGuote = this.cards.length - 1
+                    numGuote = this.cards.length - 1
                 }
-                
             } else {
                 this.cards[this.cards.length - 1].remove()
                 let preLastEl = this.cards[this.cards.length - 1].cloneNode(true)
                 preLastEl.classList.add("clone")
                 this.sliderCard.insertAdjacentElement("afterbegin", preLastEl)
                 this.cards[1].classList.remove("clone")
-                
             }
         } else if (direction == "right") {
             if (this.settings.slideToScrollAll) {
@@ -291,16 +325,16 @@ class InfinitySlider {
                 }
 
             } else if (this.settings.fadeOut) {
-                setTimeout(() => this.cards[this.numGuote].classList.add("activeFade"), 1000)
-                setTimeout(() => this.dot[this.numGuote].classList.add("activeFade"), 1000)
-                this.cards[this.numGuote].classList.remove("activeFade")
-                this.dot[this.numGuote].classList.remove("activeFade")
-                if (this.cards[this.numGuote + 1]) {
-                    this.numGuote++
+                setTimeout(() => this.cards[numGuote].classList.add("activeFade"), 1000)
+                setTimeout(() => this.dot[numGuote].classList.add("activeFade"), 1000)
+                this.cards[numGuote].classList.remove("activeFade")
+                this.dot[numGuote].classList.remove("activeFade")
+                if (this.cards[numGuote + 1]) {
+                    numGuote++
                 } else {
-                    this.numGuote = 0
+                    numGuote = 0
                 }
-                
+
             } else {
                 this.cards[0].remove()
                 let preFirstEl = this.cards[0].cloneNode(true)
@@ -316,13 +350,12 @@ class InfinitySlider {
 
     autoPlaySlider() {
         clearInterval(localStorage[this.slider.id + "interval"])
-        
+
         if (this.settings.fadeOut) {
-            this.numGuote = 0
+            let numGuote = 0
             for (let i = 0; i < this.cards.length; i++) {
                 if (this.cards[i].classList.contains("activeFade")) {
-                    this.numGuote = i
-                    
+                    numGuote = i
                 }
             }
             const setActive = (index) => {
@@ -330,99 +363,67 @@ class InfinitySlider {
                 setTimeout(() => this.dot[index].classList.add("activeFade"), 1000)
             }
             this.sliderInterval = setInterval(() => {
-                this.cards[this.numGuote].classList.remove("activeFade")
-                this.dot[this.numGuote].classList.remove("activeFade")
-                if (this.cards[this.numGuote + 1]) {
-                    this.numGuote++
+                this.cards[numGuote].classList.remove("activeFade")
+                this.dot[numGuote].classList.remove("activeFade")
+                if (this.cards[numGuote + 1]) {
+                    numGuote++
                 } else {
-                    this.numGuote = 0
+                    numGuote = 0
                 }
-                setActive(this.numGuote)
+                setActive(numGuote)
             }, this.settings.autoplayspeed)
         } else {
             this.sliderInterval = setInterval(() => {
                 this.changeSlide("right")
+                console.log("next slide")
             }, this.settings.autoplayspeed)
         }
         localStorage[this.slider.id + "interval"] = this.sliderInterval
     }
 
-    touchSlider (e) {
-        if ((this.touchPoint + 20) < e.touches[0].pageX ) {
+    touchSlider(e) {
+        if ((this.touchPoint + 20) < e.touches[0].pageX) {
             this.changeSlide('left')
             this.slider.removeEventListener('touchmove', this.touchSlider)
 
-        } else if ((this.touchPoint - 20) > e.touches[0].pageX ) {
+        } else if ((this.touchPoint - 20) > e.touches[0].pageX) {
             this.changeSlide('right')
             this.slider.removeEventListener('touchmove', this.touchSlider)
         }
     }
 }
 
+window.onresize = function (){
+    sliderPeople.init()
+    sliderBrands.init()
+    sliderQuotes.init()
+}
 
 let sliderPeople = new InfinitySlider(".slider", {
     arrows: true,
     baseCardWidth: "263rem",
-    slideToScrollAll: false,
-    autoplay: false,
+    slideToScrollAll: true,
+    autoplay: true,
     gap: 20
 })
-let sliderBrand = new InfinitySlider(".sliderBrand", {
+let sliderBrands = new InfinitySlider(".sliderBrand", {
     gap: 45,
-    arrows: false,
-    slideToScrollAll: false,
+    slideToScrollAll: true,
     baseCardWidth: "127rem",
-    autoplay: true
+    autoplay: true,
+    arrows: false
 })
 let sliderQuotes = new InfinitySlider(".sliderQuotes", {
-    autoplay: false,
+    autoplay: true,
     autoplayspeed: 4000,
     fadeOut: true,
     dots: true,
     distanceDots: 40,
-    baseCardWidth: this.baseWidthFadeOut,
     arrows: false
-
 })
-console.log(sliderQuotes)
+
+
 
 sliderPeople.init()
-sliderBrand.init()
+sliderBrands.init()
 sliderQuotes.init()
-    // window.onresize = function () {
-    //     infinitySlider(".slider", sliderProps)
-    //     infinitySlider(".sliderBrand", sliderProppsBrands)
-    //     infinitySlider(".sliderQuotes", sliderQuotes)
-    // }
-
-    
-
-    
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    //     // window.onscroll = () => {
-    //     //     clearInterval(localStorage[slider.id + "interval"])
-    //     //     if (slider.classList.contains("_active-anim")) {
-    //     //         autoPlaySlider()
-    //     //     }
-    //     // }
-    
-    
-
-    
-    // //ontouchmove
-    // //onwhill
-    // //onscroll
-    
