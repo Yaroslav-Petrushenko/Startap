@@ -375,7 +375,6 @@ class InfinitySlider {
         } else {
             this.sliderInterval = setInterval(() => {
                 this.changeSlide("right")
-                console.log("next slide")
             }, this.settings.autoplayspeed)
         }
         localStorage[this.slider.id + "interval"] = this.sliderInterval
