@@ -67,18 +67,18 @@ class Shop {
     }
 
     showCounter(){
-        if (Object.keys(this.basketItems).length) {
+        if (Object.keys(this.basketItems).length == 0) {
+            this.basketCounter.style.opacity = '0'
+            this.empty.style.display = 'block'
+            this.tableBusket.style.display = 'none'
+            this.sumaBasket.style.display = 'none'
+        } else {
             this.counter = Object.keys(this.basketItems).length
             this.basketCounter.style.opacity = '1'
             this.basketCounter.innerText = this.counter
             this.empty.style.display = 'none'
             this.tableBusket.style.display = 'block'
             this.sumaBasket.style.display = 'flex'
-        } else {
-            this.basketCounter.style.opacity = '0'
-            this.empty.style.display = 'block'
-            this.tableBusket.style.display = 'none'
-            this.sumaBasket.style.display = 'none'
         }
     }
     
