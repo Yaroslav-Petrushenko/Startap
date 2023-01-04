@@ -32,6 +32,7 @@ a
     +btn("violet")
 .vio 
     +btn("vio")
+
 //popup
 .popup
     position: fixed
@@ -76,6 +77,7 @@ a
     text-decoration: none
     color: black
     z-index: 2
+    transform: rotate(45deg)
 #popupBl
     .blogPost
         padding: 0
@@ -99,6 +101,223 @@ a
         width: 100%
     .text-info
         max-width: 100%
+#contactForm
+    .popup-content
+        padding: 40rem
+        text-transform: uppercase
+    h3
+        text-align: center
+        font-size: 30rem
+    .popupInf
+        font-size: 16rem
+        font-weight: 700
+    .userInfo
+        font-style: italic
+        color: #555555
+        font-size: 16rem
+    .popup-form
+        padding-bottom: 40rem
+    .popupAgree,
+    .popupDisagree
+        color: #555555
+        font-size: 16rem
+        margin-right: 15rem
+        padding: 7rem 30rem
+        margin-right: 20rem
+        border: 1px solid #555
+        transition: all 0.8s ease
+        cursor: pointer
+        &:hover
+            background: #c0301c
+            border-color: #c0301c
+            color: #fff
+    .df
+        display: flex
+        justify-content: space-between
+.shapkaTablitsi
+    th 
+        padding: 15rem
+        font-size: 24rem
+        color: #555555
+.productInBasket
+    td
+        font-size: 18rem
+        color: #555555
+#popupBasket
+    .prodBasket
+        justify-content: space-between
+        align-items: center
+    .popup-basket
+        padding: 30rem
+    .startup-basket
+        text-align: center
+        margin: 0
+        font-size: 25rem
+        color: #555
+        font-weight: 400
+        font-family: Montserrat
+    .empty
+        display: block
+        text-align: center
+        font-size: 14rem
+        text-transform: uppercase
+        color: #555
+        font-weight: 400
+        font-family: Montserrat
+    .sumaBasket
+        justify-content: space-between
+    .total
+        font-size: 18rem
+        color: #555555
+    .totalPrice
+        text-align: right
+        font-size: 16rem
+        color: #555555
+    .count-product
+        .flex
+            justify-content: center
+            input
+                max-width: 60rem
+                padding: 5rem 
+                -webkit-appearance: none
+                appearance: none
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button
+                -webkit-appearance: none
+                appearance: none
+            button,
+            input
+                font-size: 16rem
+                padding: 12rem
+                text-align: center
+                &:active
+                    outline: none
+                &:focus
+                    outline: none
+                &:focus-visible
+                    border: 1px solid #555555
+            button
+                transition: all .5s ease
+                background-color: rgba(#555555, 0.2)
+                cursor: pointer
+                &:hover
+                    background-color: #555555
+                    color: #fff
+    
+    .counter-product
+        border: none
+        border-top: 1px solid rgba(#555555, 0.2)
+        border-bottom: 1px solid rgba(#555555, 0.2)
+    .delite-product,
+    .add-product
+        border: 1px solid rgba(#555555, 0.2)
+        font-size: 28rem
+    .delite-product
+        border-radius: 10px 0 0 10px
+    .add-product
+        border-radius: 0  10px 10px 0
+    .total-price-product
+        text-align: right
+        font-weight: bold
+    table 
+        width: 100%
+        border-collapse: collapse
+        th
+            font-size: 18rem
+            padding: 10rem
+        td
+            padding: 10rem
+            border-top: 1px solid rgba(#555555, 0.2)
+            border-bottom: 1px solid rgba(#555555, 0.2)
+            text-align: center
+            &:last-child
+                +media(660)
+                    width: 5%
+        .photo-product
+            width: 25%
+            padding: 5rem
+            img
+                width: 100%
+                vertical-align: bottom
+    .total-container
+        padding: 10rem
+        justify-content: space-between
+        font-weight: bold
+        font-size: 18rem
+    .product-none
+        padding: 30rem 0
+        font-size: 18rem
+    a
+        color: #555555
+    .align-left
+        text-align: left
+    table
+    +mediaMax(660)
+        thead
+            display: none
+            border: none
+        tbody
+            tr
+                display: flex
+                flex-wrap: wrap
+                margin-bottom: 15rem
+                padding: 10rem
+                border: 1px solid rgba(#555, 0.2)
+                border-radius: 3px
+        .productInBasket
+            td
+                padding: 5rem
+                border: none
+                // &:last-child
+                //     width: auto
+            .photo-product
+                img
+                    width: 100%
+            .count-product
+                width: 100%
+                order: 1 
+            .priceCard
+                font-weight: bold
+                width: auto
+    +mediaMax(445)
+        tbody
+            .photo-product
+                width: 100%
+        .sumaBasket
+            padding: 10rem
+            justify-content: space-between
+            font-weight: bold
+            font-size: 18rem
+    // +mediaMax(660)
+    //     thead
+    //         display: none
+    //     tbody
+    //         tr
+    //             display: flex
+    //             flex-wrap: wrap
+    //             margin-bottom: 15rem
+    //             padding: 10rem
+    //             border: 1px solid rgba(#555, 0.2)
+    //             border-radius: 5px
+    //             box-shadow: 15px 13px 18px -14px rgb(0 0 0 / 40%)
+    //         td
+    //             padding: 5rem
+    //             border: none
+    //             &:last-child
+    //                 width: auto
+    //         .photo-product
+    //             width: 100%
+    //         .count-product
+    //             width: 100%
+    //             order: 1
+    //         .total-price-product
+    //             width: auto
+    // +mediaMax(445)
+    //     tbody
+    //         .photo-product
+    //             width: 100%
+        
 @import components/header
 @import components/main
 @import components/footer
+

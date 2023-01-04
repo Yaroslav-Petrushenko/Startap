@@ -90,7 +90,7 @@
 mixin menu (items) 
     for item in items 
         li
-            a(href=item.url) #{item.name} 
+            a.menu-link(href=item.url) #{item.name} 
 
 
 mixin aboutPeople (item)
@@ -110,7 +110,7 @@ mixin aboutPeople (item)
                 p.des-people #{item.description}
 
 mixin blogPost (item, myClass)
-    .blog-img
+    .blog-img.zoomImg
         img(src=item.src, alt=item.alt)
     .blog-info
         .blogInfo.flex

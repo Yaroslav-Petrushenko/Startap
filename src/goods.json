@@ -1,0 +1,74 @@
+{
+    "1" : {
+        "src" : "img/1.jpg",
+        "alt" : "Hair Dresser",
+        "name": "Hair Dresser",
+        "category" : "Branding",
+        "price" : "5",
+        "href" : "#"
+    },
+    "2" : {
+        "src" : "img/2.jpg",
+        "alt" : "Birdie",
+        "name": "Birdie",
+        "category" : "Branding",
+        "price" : "5",
+        "href" : "#"
+    },
+    "3" : {
+        "src" : "img/3.jpg",
+        "alt" : "Office",
+        "name": "Office",
+        "category" : "Development",
+        "price" : "5",
+        "href" : "#"
+    },
+    "4" : {
+        "src" : "img/4.jpg",
+        "alt" : "Camera",
+        "name": "Camera",
+        "category" : "Design",
+        "price" : "5",
+        "href" : "#"
+    },
+    "5" : {
+        "src" : "img/5.jpg",
+        "alt" : "Bike",
+        "name": "Bike",
+        "category" : "Branding",
+        "price" : "5",
+        "href" : "#"
+    },
+    "6" : {
+        "src" : "img/6.jpg",
+        "alt" : "Notebook",
+        "name": "Notebook",
+        "category" : "Strategy",
+        "price" : "5",
+        "href" : "#"
+    },
+    "7" : {
+        "src" : "img/7.jpg",
+        "alt" : "Laptop",
+        "name": "Laptop",
+        "category" : "Development",
+        "price" : "5",
+        "href" : "#"
+    },
+    "8" : {
+        "src" : "img/8.jpg",
+        "alt" : "Design",
+        "name": "Design",
+        "category" : "Design",
+        "price" : "5",
+        "href" : "#"
+    },
+    "9" : {
+        "src" : "img/9.jpg",
+        "alt" : "Events",
+        "name": "Events",
+        "category" : "Strategy",
+        "price" : "5",
+        "href" : "#"
+    }
+}

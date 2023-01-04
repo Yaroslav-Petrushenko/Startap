@@ -1,23 +1,22 @@
 const popupLinks = document.querySelectorAll('.popup-link'),
     body = document.querySelector('body'),
     lockPadding = document.querySelectorAll('.lock-padding'),
-    timeout = 800
-    
-    let unlock = true
-    
-    if (popupLinks.length > 0) {
-        for (let i = 0; i < popupLinks.length; i++){
-            const popupLink = popupLinks[i]
-            popupLink.addEventListener("click", function (e) {
-                const popupName = popupLink.getAttribute('href').replace('#', '')
-                const curentPopup = document.getElementById(popupName)
-                popupOpen(curentPopup)
-                e.preventDefault()
-            })
-        }
+    timeout = 300
+
+let unlock = true
+
+if (popupLinks.length > 0) {
+    for (let i = 0; i < popupLinks.length; i++) {
+        const popupLink = popupLinks[i]
+        popupLink.addEventListener("click", function (e) {
+            const popupName = popupLink.getAttribute('href').replace('#', '')
+            const curentPopup = document.getElementById(popupName)
+            popupOpen(curentPopup)
+            e.preventDefault()
+        })
     }
-    
-    
+}
+
 const popupCloseIkon = document.querySelectorAll('.close-popup')
 if (popupCloseIkon.length > 0) {
     for (let i = 0; i < popupCloseIkon.length; i++) {
@@ -39,8 +38,10 @@ function popupOpen(curentPopup) {
         }
         curentPopup.classList.add('open')
         curentPopup.addEventListener('click', function (e) {
+            
             if (!e.target.closest('.popup-content')) {
                 popupClose(e.target.closest(".popup"))
+
             }
         })
     }
@@ -54,10 +55,11 @@ function popupClose(popupActive, doUnlock = true) {
         }
     }
 }
-function bodyLock () {
-    const lockPaddingValue = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px'
 
-    for ( let i = 0; i < lockPadding.length; i++) {
+function bodyLock() {
+    const lockPaddingValue = window.innerWidth - document.querySelector('section').offsetWidth + 'px'
+
+    for (let i = 0; i < lockPadding.length; i++) {
         const el = lockPadding[i]
         el.style.paddingRight = lockPaddingValue
     }
@@ -74,29 +76,30 @@ function bodyUnLock() {
     setTimeout(function () {
         if (lockPadding.length > 0) {
             for (let i = 0; i < lockPadding.length; i++) {
-                const el = lockPadding[i];
-                el.style.paddingRight = '0px';
+                const el = lockPadding[i]
+                el.style.paddingRight = '0px'
             }
         }
-        body.style.paddingRight = '0px';
-        body.classList.remove('lock');
+        body.style.paddingRight = '0px'
+        body.classList.remove('lock')
     }, timeout);
 
-    unlock = false;
+    unlock = false
     setTimeout(function () {
-        unlock = true;
-    }, timeout);
+        unlock = true
+    }, timeout)
 }
 
-let blogMore = document.querySelector('.blogMore')
-let blogOne = document.querySelector('.blogPostOne')
+//blog-startup
+const blogReadMore = document.querySelector('.blogMore')
+const blogStartup = document.querySelector('.blogPostOne')
 
-blogMore.addEventListener("click", function (event) {
-    event.preventDefault()
-    blogOne.classList.toggle('active')
-    if (blogOne.classList.contains('active')) {
-        blogMore.innerHTML = "Close"
+blogReadMore.addEventListener("click", function (e) {
+    e.preventDefault()
+    blogStartup.classList.toggle('active')
+    if (blogStartup.classList.contains('active')) {
+        blogReadMore.innerHTML = "Hide"
     } else {
-        blogMore.innerHTML = "Read more"
+        blogReadMore.innerHTML = "Read more"
     }
 })

@@ -1,4 +1,3 @@
-
 section.service#service
     .main-service
         h2 Services
@@ -53,84 +52,10 @@ section.latest-works#works
         a.filterCategory(href="#" data-filter="development")  Development      
         a.filterCategory(href="#" data-filter="strategy")  Strategy
     .latest-img.shopBlock.wrapper
-        .worksCards.branding(data-id="hair")
-            .one
-                img(src="img/1.jpg", alt="")
-            .worksCardsHover.flex
-                p Hair Dresser
-                p.branding Branding
-                p.price 500$
-                a(href="#").view Add to +
-        .worksCards.branding(data-id="ptashka")
-            .two
-                img(src="img/2.jpg", alt="")
-            .worksCardsHover.flex
-                p Hair Dresser
-                p.branding Branding
-                p.price 500$
-                a(href="#").view Add to +
-        .worksCards.development(data-id="phone")
-            .three
-                img(src="img/3.jpg", alt="")
-            .worksCardsHover.flex
-                p Hair Dresser
-                p.branding Development 
-                p.price 500$
-                a(href="#").view Add to +
-        .worksCards.design(data-id="photo")
-            .four
-                img(src="img/4.jpg", alt="")
-            .worksCardsHover.flex
-                p Hair Dresser
-                p.branding Design
-                p.price 500$
-                a(href="#").view Add to +
-        .worksCards.branding(data-id="bike")
-            .five
-                img(src="img/5.jpg", alt="")
-            .worksCardsHover.flex
-                p Hair Dresser
-                p.branding Branding
-                p.price 500$
-                a(href="#").view Add to +
-        .worksCards.strategy(data-id="note")
-            .six
-                img(src="img/6.jpg", alt="")
-            .worksCardsHover.flex
-                p Hair Dresser
-                p.branding Strategy
-                p.price 500$
-                a(href="#").view Add to +
-        .worksCards.development(data-id="office")
-            .seven
-                img(src="img/7.jpg", alt="")
-            .worksCardsHover.flex
-                p Hair Dresser
-                p.branding Development 
-                p.price 500$
-                a(href="#").view Add to +
-        .worksCards.design(data-id="line")
-            .eight
-                img(src="img/8.jpg", alt="")
-            .worksCardsHover.flex
-                p Hair Dresser
-                p.branding Design   
-                p.price 500$
-                a(href="#").view Add to +
-        .worksCards.strategy(data-id="plakat")
-            .nine
-                img(src="img/9.jpg", alt="")
-            .worksCardsHover.flex
-                p Hair Dresser
-                p.branding Strategy
-                p.price 500$
-                a(href="#").view Add to +
 section.Get-in-Touch.parallax
     p Do you like OUR WORK so far? <br> Let's talk about YOUR PROJECT!
     .top-menu
         a(class='white' href="#contact") Get in Touch
-
-
 section.blog#blog
         .wrapper
             h2 Recent blog posts
@@ -157,39 +82,38 @@ section.clientQuotesBrands#client
                     h4 "We’ll contact you as as possible. We don’t reply on Monday. ”
                     p Doe, Mazda.
 section.contact#contact
-        .wrapper
-            h2 Get in touch
-            h6 Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
-            .mpex.flex
-                .contactInfo
-                    .address
-                        h4 Address
-                        p.ny 312, 7th Ave, New York 
-                        p NY 101200, United States of America
-                    .telHotline
-                        h4 Hotline (24x7)
-                        .tom
-                            a(href="tel:+650052300") +65 0052 300,  
-                            a(href="tel:+6588251210")  +65 88251 210
-                        .tok
-                            a(href="tel:+88 01723511340") +88 01723 511 340
-                    .mail 
-                        h4  E-mail
-                        .contact-descr-mail
-                            a(href="mailto:shapedtheme@gmail.com") shapedtheme@gmail.com
-                        .contact-descr-mail.mp
-                            a(href="mailto:khalilkode@gmail.com") khalilkode@gmail.com
-                .contactForm 
-                    form.flex(action="index.html") 
-                        .name-mail.flex
-                            input(type="name", name="name", placeholder="I")
-                            input(type="email", name="email", placeholder="Your E-mail")
-                        .phone-number.flex
-                            input(type="tel", name="tel", placeholder="Your subject")
-                            input(type="text", name="company", placeholder="Company name")
-                        .your-message
-                            textarea(name="message", rows="7", placeholder="Write your message")
-                        .send-message.flex
-                            input(type="submit", value="Send message")
-                             
-                            p We’ll contact you as as possible. We don’t reply on Monday. 
+    .wrapper
+        h2 Get in touch
+        h6 Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
+        .mpex.flex
+            .contactInfo
+                .address
+                    h4 Address
+                    p.ny 312, 7th Ave, New York 
+                    p NY 101200, United States of America
+                .telHotline
+                    h4.bef Hotline (24x7)
+                    .tom
+                        a(href="tel:+650052300") +65 0052 300,  
+                        a(href="tel:+6588251210")  +65 88251 210
+                    .tok
+                        a(href="tel:+88 01723511340") +88 01723 511 340
+                .mail 
+                    h4 E-mail
+                    .contact-descr-mail
+                        a(href="mailto:shapedtheme@gmail.com") shapedtheme@gmail.com
+                    .contact-descr-mail.mp
+                        a(href="mailto:khalilkode@gmail.com") khalilkode@gmail.com
+            .contactForm 
+                form#form.flex
+                    .name-mail.flex
+                        input#formName(type="name", name="rol", placeholder="Your Role")
+                        input#formEmail(type="email", name="email", placeholder="Your E-mail")
+                    .phone-number.flex
+                        input#formTel(type="tel", name="tel", placeholder="Your subject")
+                        input#formComp(type="text", name="company", placeholder="Company name")
+                    .your-message
+                        textarea#formMess(name="message", rows="6", placeholder="Write your message")
+                    .send-message.flex
+                        input#submitForm.submitAjax.popup-link(href="#contactForm")(type="submit", value="Send message")
+                        p We’ll contact you as as possible. We don’t reply on Monday. 

@@ -19,8 +19,7 @@
         background-color: rgba(110,69,226,0)
         border: 2px solid #ffffff
         &:hover 
-            background-color: #c0301c
-            
+            background-color: #c0301c   
     @else if $color == "violet" 
         background-color: rgba(110,69,226,0)
         &:hover 
@@ -36,9 +35,10 @@
         &:hover 
             background-color: #6e45e2
             filter: none
-            
-    
-    
+
 =media ($size)
     @media screen and ( min-width: #{$size}px)
+        @content
+=mediaMax ($size)
+    @media screen and ( max-width: #{$size}px)
         @content

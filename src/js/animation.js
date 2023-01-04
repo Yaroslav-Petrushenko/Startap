@@ -20,7 +20,7 @@ if (animItems.length > 0) {
                     animItem.classList.remove(`_active-anim`)
                 }
             }
-        });
+        })
     }
 
     function offset(el) {

@@ -46,7 +46,7 @@
 .rock-solid
     opacity: 0
     transition: all 1s ease
-    transform: translate(0%, 120%) 
+    transform: translate(0%, 60%) 
 .rock-solid._active-anim
     transform: translate(0%, 0%)
     opacity: 1
@@ -124,7 +124,6 @@
         font-family: "Roboto Slab"
         text-align: center
 .about-text
-    // justify-content: space-between
     flex-direction: column
     p
         opacity: 0
@@ -215,19 +214,19 @@
         transition: all 0.3s ease
 
     .fb 
-        background-position: -15rem -14rem
+        background-position: -7.5rem -7.5rem
         &:hover
             background-position: -5rem -54rem  
     .tw
-        background-position: -55rem -15rem 
+        background-position: -48.5rem -8rem  
         &:hover
             background-position: -49rem -54rem 
     .gg
-        background-position: -97rem -12rem 
+        background-position: -89.5rem -6rem 
         &:hover
             background-position: -91rem -55rem 
     .in
-        background-position: -137rem -11rem 
+        background-position: -129.5rem -6rem 
         &:hover
             background-position: -130rem -56rem 
 
@@ -263,7 +262,6 @@
         flex-direction: row
         flex-wrap: wrap
     a
-        
         padding: 5rem 20rem
         font-size: 16rem
         color: #555555
@@ -315,7 +313,8 @@
     display: flex
     gap: 30rem
     justify-content: center
-
+.filterCategory.active_color
+    color: #c0301c
 .worksCards
     position: relative
     justify-self: center
@@ -344,13 +343,13 @@
     justify-content: center
     align-items: center
     background: linear-gradient(rgba(#c0301c,0.45),rgba(#c0301c,0.45))
-    p
+    .name
         font-size: 18px
         color: #ffffff
         font-weight: 400
         font-family: "Montserrat"
         text-align: center
-    .branding
+    .category
         font-size: 20px
         line-height: 24px
         color: #ffffff
@@ -380,6 +379,7 @@
         text-align: center
 .anim-worksCards
     display: none
+    
 .blog
     padding-top: 100rem
     h2
@@ -556,8 +556,6 @@
 .guote.activeFade
     opacity: 1
     visibility: visible
-// // .name-review
-// //     padding-top: 40rem
 .dot-container
     margin: 0 auto
     left: 50%
@@ -576,8 +574,6 @@
 .guotes
     margin: 0 auto
     max-width: 790rem
-
-    
 .textGuote
     margin: 20rem auto
     width: 90%
@@ -606,6 +602,7 @@
         font-weight: 400
         font-family: "Roboto Slab"
         text-align: center
+        
 .contact
     padding: 100rem 0
     h2
@@ -630,61 +627,117 @@
             box-sizing: border-box
     h6
         margin: 0
-        padding: 30rem 0 70rem
+        padding: 30rem 0 30rem
         font-size: 16rem
         color: #555555
         font-weight: 400
         font-family: "Roboto Slab"
         text-align: center
+        +media(766)
+            padding-top: 30rem
     
 .mpex
     justify-content: space-between
-    flex-direction: column
+    flex-direction: column-reverse
     +media(768)
         justify-content: space-between
         flex-direction: row
         padding-top: 50rem
-
+        
 .contactForm 
-    textarea 
-        margin: 15rem 10rem
-        padding: 10rem 15rem
-        text-transform: uppercase
-.contactForm 
+    width: 100%
+    +media(768)
+            width: 64%
     form
         flex-direction: column
+        align-items: stretch
+        width: 100%
+    input,
+    textarea
+        box-sizing: border-box
+        flex-direction: column
+        margin: 10rem 0rem
+        padding: 10rem 15rem
+        text-transform: uppercase
+        border: 1px solid #555555   
+        &:focus
+            outline: none
+        &:focus-visible
+            border: 1px solid #c0301c
+    
     .name-mail
         color: #555555
         flex-direction: column
+        column-gap: 10rem
         +media(1024)
-            width: 730rem
             flex-direction: row
         input
-            text-transform: uppercase
-            color: #555555
-            font-weight: 400
-            
             +media(769)
-                width: 730rem
-            
+                width: 100%
+        
     .phone-number
         flex-direction: column
+        column-gap: 10rem
         +media(1024)
-            flex-direction: row
-            width: 730rem
-            
+            flex-direction: row  
         input
+            +media(769)
+                    width: 100%
+
+    .send-message
+        align-items: center
+        flex-direction: row
+        p
+            padding-left: 20rem
+            position: relative
+            font-size: 10rem
+            color: #555555
+            font-weight: 400
+            font-family: "Roboto Slab"
+            &::before
+                position: absolute
+                content: "*"
+                width: 10rem
+                height: 10rem
+                color: #c0301c
+                top: 0
+                left: 10rem
+            +media(425)
+                font-size: 12rem
+        input
+            font-size: 12px
+            letter-spacing: 1px
             text-transform: uppercase
             color: #555555
             font-weight: 400
-            +media(769)
-                width: 50%
+            font-family: "Roboto Slab"
+            background-color: #ffffff
+            border: 1px solid #555555
+            transition: all .5s ease
+            cursor: pointer
+            &:hover
+                color: #ffffff
+                background-color: #c0301c
+.your-message
+    text-align: left
+    textarea 
+        font-size: 12px
+        text-transform: uppercase
+        color: #555555
+        font-weight: 400
+        font-family: "Roboto Slab"
+        resize: vertical
+        min-height: 40px
+        max-height: 250px
+        width: 100%
+
 
 .contactInfo
-    text-align: center
-    flex-direction: column
+    text-align: left
+    flex-direction: row
     +media(768)
         text-align: left
+        flex-direction: column
     p
         margin: 0
         font-size: 12rem
@@ -693,11 +746,12 @@
         font-family: "Roboto Slab"
     h4
         margin: 0
-        padding-bottom: 20rem
+        margin-bottom: 20rem
         font-size: 14rem
         text-transform: uppercase
         color: #555555
         font-family: "Myriad Pro"
+    
 .telHotline
     a
         font-size: 12rem
@@ -712,84 +766,72 @@
         color: #555555
         font-weight: 400
         font-family: "Roboto Slab"
-.contactForm 
-    input
-        margin: 15rem 10rem
-        padding: 10rem 15rem
-        text-transform: uppercase
-        flex-direction: column
-        &:focus
-            outline: none
-        &:focus-visible
-            border: 1px solid #c0301c
-.contactForm 
-    textarea 
-        flex-direction: column
-        font-size: 12rem
-        text-transform: uppercase
-        color: #555555
-        font-weight: 400
-        font-family: "Roboto Slab"
-        resize: vertical
-        min-height: 50rem
-        max-height: 250rem
-        width: 82.3%
-        &:focus
-            outline: none
-        &:focus-visible
-            border: 1px solid #c0301c
-        +media(375)
-            width: 85%
-        +media(425)
-            width: 87%
-        +media(768)
-            width: 89.3%
-        +media(1024)
-            width: 93%
-.yuor-message
-    textarea 
-        font-size: 12rem
-        text-transform: uppercase
-        color: #555555
-        font-weight: 400
-.send-message
-    align-items: center
-    flex-direction: column
-    +media(768)
-        flex-direction: row
-    
-        
-    p
-        padding-left: 20rem
+
+.mail
+    padding: 10rem
+    margin-bottom: 20rem
+    a
+        padding-left: 30rem
+        transition: all .5s ease
+        &:hover
+            color: #c0103c
+    h4
+        padding-left: 30rem
         position: relative
-        font-size: 12rem
-        color: #555555
-        font-weight: 400
-        font-family: "Roboto Slab"
         &::before
             position: absolute
-            content: "*"
-            width: 10rem
-            height: 10rem
+            content: ""
+            background: url(../img/sprite1.png) no-repeat
+            background-position: -208.5rem -14rem 
+            width: 20rem
+            height: 16rem
             color: #c0301c
-            top: 0
-            left: 10rem
-    input
-        font-size: 12px
-        letter-spacing: 1px
-        text-transform: uppercase
-        color: #555555
-        font-weight: 400
-        font-family: "Roboto Slab"
-        background-color: #ffffff
-        border: 1px solid #555555
-        &:hover
-            color: #ffffff
-            background-color: #c0301c
-.mail,
+            top: 50%
+            left: 0
+            transform: translateY(-50%)
 .telHotline
-    margin: 0
-    padding: 40rem 0 0
+    padding: 10rem
+    margin-bottom: 20rem
+    a
+        padding-left: 30rem
+        transition: all .5s ease
+        &:hover
+            color: #c0103c
+    h4
+        padding-left: 30rem
+        position: relative
+        &::before
+            position: absolute
+            content: ""
+            background: url(../img/sprite1.png) no-repeat
+            background-position: -180.5rem -8rem 
+            width: 20rem
+            height: 27rem
+            color: #c0301c
+            top: 50%
+            left: 0
+            transform: translateY(-50%)
+.address
+    padding: 10rem
+    margin-top: 30rem
+    margin-bottom: 20rem
+    p
+        padding-left: 30rem
+    h4
+        padding-left: 30rem
+        position: relative
+        &::before
+            position: absolute
+            content: ""
+            background: url(../img/sprite1.png) no-repeat
+            background-position: -232.5rem -10rem 
+            width: 20rem
+            height: 20rem
+            top: 50%
+            left: 0
+            transform: translateY(-50%)
+    +media(768)
+        margin-top: 0
 .tok
     padding: 5rem 0 0
 .ny

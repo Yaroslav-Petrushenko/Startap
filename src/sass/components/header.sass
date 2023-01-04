@@ -6,7 +6,6 @@
     position: relative
     +media(768)
         background-size: 120% auto
-
 .header-section
     position: fixed
     width: 100%
@@ -14,6 +13,9 @@
     right: 0
     transition: all .2s ease
     z-index: 10
+
+.hambMenu
+    align-items: center
 .headerHid  
     transform: translateY(-100%)
 .top
@@ -27,7 +29,6 @@
         color: #ffffff
         font-weight: 700
         font-family: "Montserrat"
-        
         &:hover
             color:#c0301c
 
@@ -64,7 +65,6 @@
     transform: translate(-50%, -50%)
     opacity: 1 !important
     
-
 .top-menu 
     margin: 15rem 0
     li
@@ -107,6 +107,7 @@
     display: flex
     flex-direction: column
     justify-content: center
+    z-index: 8
     +media(900)
         display: none
     span
@@ -115,31 +116,33 @@
         height: 3px
         background-color: #fff
         border-radius: 5px
-
-
 .active-burger 
     display: inline-block
     position: absolute
-    text-align: center
-    background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45))
-    top: 60rem
-    right: 0
-    left: 0
-    background-size: cover
-    z-index: 5
     ul
+        padding-top: 60rem
+        padding-right: 30rem
+        display: flex
+        justify-content: space-between
+        margin: 0
+        position: fixed
         flex-direction: column
-        align-items: center
-        width: 100%
-        height: 100%
-
+        align-items: flex-end
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45))
+        background-size: cover
+        overflow: auto
     li
         a
             display: inline-block
-            padding: 20px 30px
+
 .basket
+    position: relative
     padding: 20rem
-    margin-top: 7rem
+    z-index: 8
     svg
         fill: white
         width: 20px
@@ -147,4 +150,20 @@
         cursor: pointer
         &:hover
             transform: scale(1.2)
-        
+    +media(900)
+        margin-top: 7rem
+.basket-counter
+    opacity: 0
+    position: absolute
+    text-align: center
+    font-weight: 700
+    color: #f8f8f8
+    font-size: 12rem
+    border: 1px solid #f8f8f8
+    top: 50%
+    left: 60%
+    border-radius: 50%
+    width: 15px
+    height: 15px
+    background-color: transparent
+

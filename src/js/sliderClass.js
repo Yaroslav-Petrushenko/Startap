@@ -53,7 +53,6 @@ class InfinitySlider {
         this.touchPoint
         this.dot
     }
-
     static defoltSettings = {
         slideToScrollAll: false,
         dots: false,
@@ -69,12 +68,10 @@ class InfinitySlider {
 
 
     init() {
-        // this.heightCards = 0
         this.sliderWidth = this.sliderCard.getBoundingClientRect().width
         if (this.settings.baseCardWidth == null) {
             this.settings.baseCardWidth = this.sliderWidth + 'px'
         }
-        // console.log(this.sliderWidth);
 
         this.slider.querySelectorAll(".clone").forEach(clone => {
             clone.remove()
@@ -160,7 +157,6 @@ class InfinitySlider {
             }
         })
 
-
         if (this.settings.autoplay && this.realCardsLenth > this.cardsCount) {
             this.autoPlaySlider()
         }
@@ -186,9 +182,7 @@ class InfinitySlider {
             if (this.settings.autoplay && this.realCardsLenth > this.cardsCount) {
                 this.autoPlaySlider()
             }
-        }
-        
-        
+        }  
     }
 
     createArrows() {
@@ -227,7 +221,6 @@ class InfinitySlider {
                 }
             }
         }
-
     }
 
     createClone() {
@@ -401,7 +394,7 @@ window.onresize = function (){
 let sliderPeople = new InfinitySlider(".slider", {
     arrows: true,
     baseCardWidth: "263rem",
-    slideToScrollAll: true,
+    slideToScrollAll: false,
     autoplay: true,
     gap: 20
 })
@@ -420,8 +413,6 @@ let sliderQuotes = new InfinitySlider(".sliderQuotes", {
     distanceDots: 40,
     arrows: false
 })
-
-
 
 sliderPeople.init()
 sliderBrands.init()
